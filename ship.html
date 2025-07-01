@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ship</title>
+    <link rel="icon" href="./assets/icons/favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -16,9 +17,8 @@
 <body>
 
     <div class="md:flex bg-white">
-
         <!-- SideBar -->
-        <div class=" bg-gray-100">
+        <div class=" bg-gray-100" style="height: -webkit-fill-available;">
             <!-- Mobile Top Bar -->
             <div class="md:hidden flex items-center justify-between px-4 py-3 bg-black text-white shadow">
                 <img src="/icons/logo.svg" alt="logo" class="w-[50px] h-[50px]" />
@@ -34,8 +34,8 @@
 
             <!-- Sidebar -->
             <aside id="sidebar"
-                class="bg-gray-100 text-black h-screen flex flex-col justify-between fixed top-[85px] left-0 z-50 w-full md:static md:top-0 md:w-auto md:translate-x-0 transform -translate-x-full transition-transform duration-300 md:block">
-                <div class="space-y-2">
+                class="bg-gray-100 text-black h-full flex flex-col justify-between md:sticky fixed top-[85px] left-0 z-50 w-full md:top-0 md:w-auto md:translate-x-0 transform -translate-x-full transition-transform duration-300 md:block">
+                <div class="">
                     <!-- Desktop Logo -->
                     <div class="hidden md:flex items-center justify-center">
                         <div class="bg-black w-[215px] h-[215px] flex items-center justify-center">
@@ -44,71 +44,83 @@
                     </div>
 
                     <!-- Menu Items -->
-                    <nav class="">
-                        <!-- Repeat this block for each menu item -->
-                        <a href="./ship.html"
-                            class="group h-[70px] flex items-center gap-4 px-4 rounded-md cursor-pointer transition bg-white relative">
-                            <div class="w-[70px] h-[70px]">
-                                <img src="/assets/icons/menu-ship.png" alt="Ship"
-                                    class="w-full h-full object-contain" />
-                            </div>
-                            <div class="absolute inset-0 transition-opacity opacity-0 bg-gray-100/50"></div>
-                            <span class="text-xl font-bold">Ship</span>
-                        </a>
+                    <nav class="relative">
+                        <div class="relative" id="SideBarShipBtnContainer">
+                            <!-- Main link -->
+                            <a href="./ship.html" id="SideBarShipBtn"
+                                class="group h-[75px] flex items-center gap-4 px-4 cursor-pointer transition bg-gray-100 hover:bg-white relative z-[50]">
+                                <div class="w-[70px] h-[70px]">
+                                    <img src="/assets/icons/menu-ship.png" alt="ship"
+                                        class="w-full h-full object-contain" />
+                                </div>
+                                <div id="SideBarShipBtnEffect"
+                                    class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
+                                <span class="text-xl font-bold">Ship</span>
+                            </a>
 
-                        <a href="./rates.html"
-                            class="group h-[70px] flex items-center gap-4 px-4 rounded-md cursor-pointer transition hover:bg-white bg-transparent relative">
+                            <!-- Ship All Items -->
+                            <div class="absolute top-0 right-0 z-[48] h-[75px]" id="SideBarShipBtnItems">
+                                <button onclick="window.location.href='./single.html'" id="SideBarShipSingleBtn"
+                                    class="w-[100px] h-full bg-[#f5f5f5] hover:bg-white flex flex-col justify-center items-center transition">
+                                    <img src="/assets/images/singlePage.png" alt="singlePage"
+                                        class="w-[45px] h-[45px] object-contain" />
+                                    <p class="text-[14px] font-[500]">Single</p>
+                                </button>
+                            </div>
+                        </div>
+
+                        <a href="./rates.html" id="SideBarRatesBtn"
+                            class="group h-[75px] flex items-center gap-4 px-4 cursor-pointer transition bg-gray-100 hover:bg-white relative z-[50]">
                             <div class="w-[70px] h-[70px]">
                                 <img src="/assets/icons/menu-rates.png" alt="Rates"
                                     class="w-full h-full object-contain" />
                             </div>
-                            <div class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
+                            <div id="SideBarRatesBtnEffect"
+                                class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
                             <span class="text-xl font-bold">Rates</span>
                         </a>
-
-                        <a href="./reports.html"
-                            class="group h-[70px] flex items-center gap-4 px-4 rounded-md cursor-pointer transition hover:bg-white bg-transparent relative">
+                        <a href="./reports.html" id="SideBarReportsBtn"
+                            class="group h-[75px] flex items-center gap-4 px-4 cursor-pointer transition bg-gray-100 hover:bg-white relative">
                             <div class="w-[70px] h-[70px]">
                                 <img src="/assets/icons/menu-reports.png" alt="Reports"
                                     class="w-full h-full object-contain" />
                             </div>
-                            <div class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
+                            <div id="SideBarReportsBtnEffect"
+                                class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
                             <span class="text-xl font-bold">Reports</span>
                         </a>
-
-                        <a href="./settings.html"
-                            class="group h-[70px] flex items-center gap-4 px-4 rounded-md cursor-pointer transition hover:bg-white bg-transparent relative">
+                        <a href="./settings.html" id="SideBarSettingsBtn"
+                            class="group h-[75px] flex items-center gap-4 px-4 cursor-pointer transition bg-gray-100 hover:bg-white relative">
                             <div class="w-[70px] h-[70px]">
                                 <img src="/assets/icons/menu-settings.png" alt="Settings"
                                     class="w-full h-full object-contain" />
                             </div>
-                            <div class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
+                            <div id="SideBarSettingsBtnEffect"
+                                class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
                             <span class="text-xl font-bold">Settings</span>
                         </a>
-
-                        <a href="./support.html"
-                            class="group h-[70px] flex items-center gap-4 px-4 rounded-md cursor-pointer transition hover:bg-white bg-transparent relative">
+                        <a href="./support.html" id="SideBarSupportBtn"
+                            class="group h-[75px] flex items-center gap-4 px-4 cursor-pointer transition bg-gray-100 hover:bg-white relative">
                             <div class="w-[70px] h-[70px]">
                                 <img src="/assets/icons/menu-support.png" alt="Support"
                                     class="w-full h-full object-contain" />
                             </div>
-                            <div class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
+                            <div id="SideBarSupportBtnEffect"
+                                class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
                             <span class="text-xl font-bold">Support</span>
                         </a>
-
-                        <a href="/logout"
-                            class="group h-[70px] flex items-center gap-4 px-4 rounded-md cursor-pointer transition hover:bg-white bg-transparent relative">
+                        <a href="#" id="SideBarLogoutBtn"
+                            class="group h-[75px] flex items-center gap-4 px-4 cursor-pointer transition bg-gray-100 hover:bg-white relative">
                             <div class="w-[70px] h-[70px]">
                                 <img src="/assets/icons/menu-logout.png" alt="Logout"
                                     class="w-full h-full object-contain" />
                             </div>
-                            <div class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
+                            <div id="SideBarLogoutBtnEffect"
+                                class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
                             <span class="text-xl font-bold">Logout</span>
                         </a>
                     </nav>
                 </div>
-
-
                 <!-- Footer -->
                 <div class="text-[8px] text-gray-500 text-center space-y-1 px-2 mt-[1.38em] mb-4">
                     <p>© 2014–2025 – All Rights Reserved</p>
@@ -119,13 +131,271 @@
             </aside>
         </div>
         <!-- Main Content -->
-        <div class="flex-1 sm:p-[49px] p-[30px] mb-[4em]">
+        <div class="flex-1 pb-[1.389em] mb-[4em]">
 
+            <div class="w-full h-[215px] flex justify-center items-center mb-[24px]"
+                style="background: repeating-linear-gradient(-45deg, rgb(255, 255, 255), rgb(255, 255, 255) 25px, rgb(251, 251, 251) 25px, rgb(251, 251, 251) calc(50px));">
+                <a href="./single.html"
+                    class="w-[140px] h-[140px] bg-white hover:bg-[#f5f5f5] rounded-[50%] border-[5px] border-[#f5f5f5] flex flex-col text-center items-center justify-center transition cursor-pointer">
+                    <img src="/assets/images/singlePage.png" alt="logo" class="w-[65px] h-[65px]" />
+                    <p class="p-[0px_24px] text-[14px] font-[500] text-[#999]">Create a Single Label</p>
+                </a>
+            </div>
+
+            <div class="flex-1 sm:px-[49px] px-[30px]">
+                <div class="flex items-center mb-[24px]">
+                    <div class="floating-label-wrapper relative w-full">
+                        <input type="text" placeholder=""
+                            class="peer floating-input border-2 border-gray-300 rounded-l-[4px] w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
+
+                        <label class="floating-label large">
+                            Search previous labels
+                        </label>
+                    </div>
+                    <div class="p-[0px_16px] bg-[#ebebeb] border-r-2 border-y-2 border-gray-300 flex justify-center items-center rounded-r-[4px]"
+                        style="height: -webkit-fill-available;">
+                        <i class="fa-solid fa-magnifying-glass text-[22px] text-[#999]"></i>
+                    </div>
+
+                </div>
+                <!-- 3 Button -->
+                <div class="grid md:grid-cols-3 grid-cols-2 items-center gap-0 md:gap-[24px] mb-[24px]">
+                    <div class="md:mr-0 mr-[12px]">
+                        <button
+                            class="w-full text-[17px] font-[400] text-[#fff] p-[2px_9px_0px] bg-[#00a9ff] hover:bg-[#0098E6] border-[2px] border-[#0098e6] h-[50px] rounded-[5px]">
+                            End of Day
+                        </button>
+                    </div>
+                    <div class="md:ml-0 ml-[12px]">
+                        <button
+                            class="w-full text-[17px] font-[400] text-[#fff] p-[2px_9px_0px] bg-[#00a9ff] hover:bg-[#0098E6] border-[2px] border-[#0098e6] h-[50px] rounded-[5px]">
+                            Schedule Pickup
+                        </button>
+                    </div>
+                    <div class="col-span-2 md:col-span-1 md:mt-0 mt-[24px]">
+                        <button disabled
+                            class="w-full text-[17px] font-[400] text-[#fff] p-[2px_9px_0px] bg-[#2ca200] border-[2px] border-[#289200] h-[50px] rounded-[5px] opacity-[0.6] cursor-not-allowed">
+                            Print Selected Labels
+                        </button>
+                    </div>
+                </div>
+                <!-- Info Of Account -->
+                <div class="">
+                    <div
+                        class="min-h-[130px] bg-[#fbfbfb] hover:bg-white border-y-[2px] border-[#ccc] cursor-pointer transition flex flex-wrap items-center justify-between">
+                        <div
+                            class="lg:w-[50%] w-[100%] flex items-center lg:p-[24px_12px_24px_12px] p-[24px_12px_0px_12px]">
+                            <div class="w-[16.6667%]"></div>
+                            <div class="w-[83.3333%]">
+                                <h1 class="text-[19px] text-[#00a9ff] mb-[12px]">Md Atikulla</h1>
+                                <p class="text-[14px] text-[#999] mb-[12px]">Monday, 6/30/25 1:36 PM PDT</p>
+                            </div>
+                        </div>
+                        <div class="lg:w-[25%] w-full px-[12px] lg:py-0 py-[12px] flex justify-center text-center">
+                            <p class="text-[14px] font-[500] text-[#ccc]">Processing</p>
+                        </div>
+                        <div class="lg:w-[25%] w-full px-[12px] lg:pb-0 pb-[24px]">
+                            <button
+                                class="w-[100%] text-[17px] font-[400] text-[#fff] p-[2px_9px_0px] bg-[#00a9ff] hover:bg-[#0098E6] border-[2px] border-[#0098e6] h-[50px] rounded-[5px]">
+                                Input Needed
+                            </button>
+                        </div>
+
+
+                    </div>
+                    <div
+                        class="min-h-[130px] bg-[#fbfbfb] hover:bg-white border-b-[2px] border-[#ccc] cursor-pointer transition flex flex-wrap items-center justify-between">
+                        <div
+                            class="lg:w-[50%] w-[100%] flex items-center lg:p-[24px_12px_24px_12px] p-[24px_12px_0px_12px]">
+                            <div class="w-[16.6667%]"></div>
+                            <div class="w-[83.3333%]">
+                                <h1 class="text-[19px] text-[#00a9ff] mb-[12px]">Jibon</h1>
+                                <p class="text-[14px] text-[#999] mb-[12px]">Monday, 6/30/25 1:22 PM PDT</p>
+                            </div>
+                        </div>
+                        <div class="lg:w-[25%] w-full px-[12px] lg:py-0 py-[12px] flex justify-center text-center">
+                            <p class="text-[14px] font-[500] text-[#ccc]">Processing</p>
+                        </div>
+                        <div class="lg:w-[25%] w-full px-[12px] lg:pb-0 pb-[24px]">
+                            <button
+                                class="w-[100%] text-[17px] font-[400] text-[#fff] p-[2px_9px_0px] bg-[#00a9ff] hover:bg-[#0098E6] border-[2px] border-[#0098e6] h-[50px] rounded-[5px]">
+                                Input Needed
+                            </button>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="py-[48px] mb-[24px]">
+                    <p class="text-[14px] text-[#666]">1 to 2 of 2 Batches</p>
+                </div>
+                <div
+                    class="grid [@media(min-width:1400px)]:grid-cols-3 [@media(min-width:1000px)]:grid-cols-2 grid-cols-1 gap-[24px]">
+                    <div class="flex flex-col gap-[24px]">
+                        <!-- 1 -->
+                        <div
+                            class="h-fit overflow-hidden border-[2px] border-[#ccc] bg-[#fbfbfb] rounded-[5px] relative">
+                            <!-- X Button -->
+                            <div class="absolute right-0 top-0 p-[16px]">
+                                <i class="fa-solid fa-xmark text-[16px] text-[#ccc] cursor-pointer"></i>
+                            </div>
+                            <!-- Main Content -->
+                            <div class="p-[16px]">
+                                <h1 class="pb-[16px] text-[21px] font-[700]">Getting Started Video</h1>
+                                <p class="text-[17px] text-[#333]">Watch this quick video to see how Pirate Ship works.
+                                </p>
+                            </div>
+                            <!-- Responsive YouTube Embed -->
+                            <div class="w-full aspect-video">
+                                <iframe class="w-full h-full"
+                                    src="https://www.youtube.com/embed/GxmfcnU3feo?si=4XD2r4GuLQRNCJiR"
+                                    title="YouTube video player" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                                </iframe>
+                            </div>
+                        </div>
+                        <!-- 4 -->
+                        <div
+                            class="h-fit overflow-hidden border-[2px] border-[#ccc] bg-[#fbfbfb] rounded-[5px] relative">
+                            <!-- X Button -->
+                            <div class="absolute right-0 top-0 p-[16px]">
+                                <i class="fa-solid fa-xmark text-[16px] text-[#ccc] cursor-pointer"></i>
+                            </div>
+                            <!-- Main Content -->
+                            <div class="p-[16px]">
+                                <h1 class="pb-[16px] text-[21px] font-[700]">Add a Payment Method</h1>
+                                <p class="text-[17px] text-[#333]">Before you can start purchasing postage, you’ll need
+                                    to add a debit or credit card. There’s no monthly fees or costs; Pirate Ship is
+                                    free, and you only pay the actual postage cost as you go!</p>
+                            </div>
+                            <div class="bg-[#F5F5F5] flex flex-col justify-center p-[16px]">
+                                <button
+                                    class="w-fit mx-auto text-[17px] font-[400] text-[#fff] p-[2px_9px_0px] bg-[#289200] border-[2px] border-[#2ca200] h-[50px] rounded-[5px]"><i
+                                        class="fa-solid fa-lock text-[16px] text-white mr-[2px]"></i>
+                                    Add a Payment Method
+                                </button>
+                                <p class="text-[14px] text-[#999] text-center cursor-pointer pt-[12px]">Click here, or
+                                    you can do this while shipping your first package, or go to Settings > Payment
+                                    Method</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-[24px]">
+                        <!-- 2 -->
+                        <div
+                            class="h-fit overflow-hidden border-[2px] border-[#ccc] bg-[#fbfbfb] rounded-[5px] relative">
+                            <!-- X Button -->
+                            <div class="absolute right-0 top-0 p-[16px]">
+                                <i class="fa-solid fa-xmark text-[16px] text-[#ccc] cursor-pointer"></i>
+                            </div>
+                            <!-- Main Content -->
+                            <div class="p-[16px]">
+                                <h1 class="pb-[16px] text-[21px] font-[700]">Edit Your Tracking Email</h1>
+                                <p class="text-[17px] text-[#333]">Want to notify your recipients that their package is
+                                    on
+                                    its way? Customize your tracking email and verify your email address.</p>
+                            </div>
+                            <div class="bg-[#F5F5F5] p-[16px]">
+                                <div
+                                    class="bg-[#fbfbfb] hover:bg-white p-[24px_48px] flex items-center cursor-pointer transition">
+                                    <i class="fa-solid fa-envelope text-[22px] text-[#ccc]"></i>
+                                    <div class="pl-[16px] pr-[12px]">
+                                        <h1 class="text-[19px] font-[500] text-[#00a9ff]">Email Settings</h1>
+                                        <p class="text-[14px] text-[#999] leading-[1.42857143] opacity-[1]">Create
+                                            shipment
+                                            notification<br /> emails to send to your<br /> recipients</p>
+                                    </div>
+                                </div>
+                                <p class="text-[14px] text-[#999] text-center cursor-pointer pt-[12px]">Click here, or
+                                    look
+                                    for this button in Settings</p>
+                            </div>
+                        </div>
+                        <!-- 5 -->
+                        <div
+                            class="h-fit overflow-hidden border-[2px] border-[#ccc] bg-[#fbfbfb] rounded-[5px] relative">
+                            <!-- X Button -->
+                            <div class="absolute right-0 top-0 p-[16px]">
+                                <i class="fa-solid fa-xmark text-[16px] text-[#ccc] cursor-pointer"></i>
+                            </div>
+                            <!-- Main Content -->
+                            <div class="p-[16px]">
+                                <h1 class="pb-[16px] text-[21px] font-[700]">Scales & Label Printers</h1>
+                                <p class="text-[17px] text-[#333] pb-[16px]">You can measure your packages with any
+                                    scale,
+                                    as long as it gives you accurate weights in pounds and ounces.</p>
+                                <p class="text-[17px] text-[#333]">You can print labels with any type of desktop
+                                    printer,
+                                    such as an inkjet or laser printer, or you can print with labels printers that
+                                    support
+                                    2x7" or 4x6" labels.</p>
+                            </div>
+                            <div class="bg-[#F5F5F5] flex flex-col justify-center p-[16px]">
+                                <button
+                                    class="w-fit mx-auto text-[17px] font-[400] text-[#fff] p-[2px_9px_0px] bg-[#00a9ff] hover:bg-[#0098E6] border-[2px] border-[#0098e6] h-[50px] rounded-[5px]">
+                                    See Our Recommendations
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-[24px]">
+                        <!-- 3 -->
+                        <div
+                            class="h-fit overflow-hidden border-[2px] border-[#ccc] bg-[#fbfbfb] rounded-[5px] relative">
+                            <!-- X Button -->
+                            <div class="absolute right-0 top-0 p-[16px]">
+                                <i class="fa-solid fa-xmark text-[16px] text-[#ccc] cursor-pointer"></i>
+                            </div>
+                            <!-- Main Content -->
+                            <div class="p-[16px]">
+                                <h1 class="pb-[16px] text-[21px] font-[700]">Connect Your Ecommerce Store</h1>
+                                <p class="text-[17px] text-[#333]">Pirate Ship integrates with lots of different
+                                    ecommerce
+                                    platforms. Connect your store to import unshipped orders and automatically mark them
+                                    as
+                                    shipped with the tracking information when you buy a label for them.</p>
+                            </div>
+                            <div class="bg-[#F5F5F5] p-[16px]">
+                                <div class="flex items-center justify-center cursor-pointer">
+                                    <div
+                                        class="m-[12px] w-[140px] h-[140px] bg-white hover:bg-[#f5f5f5] rounded-[50%] border-[5px] border-[#f5f5f5] flex flex-col text-center items-center justify-center transition cursor-pointer">
+                                        <img src="/assets/images/importPage.png" alt="logo" class="w-[65px] h-[65px]" />
+                                        <p class="p-[0px_24px] text-[14px] font-[500] text-[#999]">Import from
+                                            Integrations
+                                        </p>
+                                    </div>
+                                </div>
+                                <p class="text-[14px] text-[#999] text-center cursor-pointer pt-[12px]">Click here, or
+                                    look
+                                    for this button at the top, or go to Settings > Integrations</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <img src="./assets/icons/logo2.svg" alt="" class="w-[200px] mx-auto mt-[48px]">
+
+            <div class="w-full text-[.7em] md:hidden flex flex-col justify-center text-center text-[#00a9ff] mt-[10em]">
+                <p class="text-[#000]">© 2014-2025 - All Rights Reserved</p>
+                <div class="w-full flex items-center justify-center">
+                    <a href="#" class="">Privacy Policy</a><span class="mx-[2px]"> - </span>
+                    <a href="#" class="">Terms of Use</a><span class="mx-[2px]"> - </span>
+                    <a href="#" class="">DPA</a>
+                </div>
+                <div class="w-full flex items-center justify-center">
+                    <a href="#" class="">Cookies Notice</a><span class="mx-[2px]"> - </span>
+                    <a href="#" class="">Manage Your Privacy & Data Settings</a>
+                </div>
+            </div>
         </div>
     </div>
     </div>
 
     <script src="./js/ship.js"></script>
+    <script src="./js/index.js"></script>
 </body>
 
 </html>

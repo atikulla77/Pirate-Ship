@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="icon" href="./assets/icons/favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -17,7 +18,7 @@
 
     <div class="md:flex bg-white">
         <!-- SideBar -->
-        <div class=" bg-gray-100">
+        <div class=" bg-gray-100" style="height: -webkit-fill-available;">
             <!-- Mobile Top Bar -->
             <div class="md:hidden flex items-center justify-between px-4 py-3 bg-black text-white shadow">
                 <img src="/icons/logo.svg" alt="logo" class="w-[50px] h-[50px]" />
@@ -33,8 +34,8 @@
 
             <!-- Sidebar -->
             <aside id="sidebar"
-                class="bg-gray-100 text-black h-screen flex flex-col justify-between fixed top-[85px] left-0 z-50 w-full md:static md:top-0 md:w-auto md:translate-x-0 transform -translate-x-full transition-transform duration-300 md:block">
-                <div class="space-y-2">
+                class="bg-gray-100 text-black h-full flex flex-col justify-between md:sticky fixed top-[85px] left-0 z-50 w-full md:top-0 md:w-auto md:translate-x-0 transform -translate-x-full transition-transform duration-300 md:block">
+                <div class="">
                     <!-- Desktop Logo -->
                     <div class="hidden md:flex items-center justify-center">
                         <div class="bg-black w-[215px] h-[215px] flex items-center justify-center">
@@ -43,71 +44,83 @@
                     </div>
 
                     <!-- Menu Items -->
-                    <nav class="">
-                        <!-- Repeat this block for each menu item -->
-                        <a href="./ship.html"
-                            class="group h-[70px] flex items-center gap-4 px-4 rounded-md cursor-pointer transition bg-white relative">
-                            <div class="w-[70px] h-[70px]">
-                                <img src="/assets/icons/menu-ship.png" alt="Ship"
-                                    class="w-full h-full object-contain" />
-                            </div>
-                            <div class="absolute inset-0 transition-opacity opacity-0 bg-gray-100/50"></div>
-                            <span class="text-xl font-bold">Ship</span>
-                        </a>
+                    <nav class="relative">
+                        <div class="relative" id="SideBarShipBtnContainer">
+                            <!-- Main link -->
+                            <a href="./ship.html" id="SideBarShipBtn"
+                                class="group h-[75px] flex items-center gap-4 px-4 cursor-pointer transition bg-gray-100 hover:bg-white relative z-[50]">
+                                <div class="w-[70px] h-[70px]">
+                                    <img src="/assets/icons/menu-ship.png" alt="ship"
+                                        class="w-full h-full object-contain" />
+                                </div>
+                                <div id="SideBarShipBtnEffect"
+                                    class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
+                                <span class="text-xl font-bold">Ship</span>
+                            </a>
 
-                        <a href="./rates.html"
-                            class="group h-[70px] flex items-center gap-4 px-4 rounded-md cursor-pointer transition hover:bg-white bg-transparent relative">
+                            <!-- Ship All Items -->
+                            <div class="absolute top-0 right-0 z-[48] h-[75px]" id="SideBarShipBtnItems">
+                                <button onclick="window.location.href='./single.html'" id="SideBarShipSingleBtn"
+                                    class="w-[100px] h-full bg-[#f5f5f5] hover:bg-white flex flex-col justify-center items-center transition">
+                                    <img src="/assets/images/singlePage.png" alt="singlePage"
+                                        class="w-[45px] h-[45px] object-contain" />
+                                    <p class="text-[14px] font-[500]">Single</p>
+                                </button>
+                            </div>
+                        </div>
+
+                        <a href="./rates.html" id="SideBarRatesBtn"
+                            class="group h-[75px] flex items-center gap-4 px-4 cursor-pointer transition bg-gray-100 hover:bg-white relative z-[50]">
                             <div class="w-[70px] h-[70px]">
                                 <img src="/assets/icons/menu-rates.png" alt="Rates"
                                     class="w-full h-full object-contain" />
                             </div>
-                            <div class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
+                            <div id="SideBarRatesBtnEffect"
+                                class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
                             <span class="text-xl font-bold">Rates</span>
                         </a>
-
-                        <a href="./reports.html"
-                            class="group h-[70px] flex items-center gap-4 px-4 rounded-md cursor-pointer transition hover:bg-white bg-transparent relative">
+                        <a href="./reports.html" id="SideBarReportsBtn"
+                            class="group h-[75px] flex items-center gap-4 px-4 cursor-pointer transition bg-gray-100 hover:bg-white relative">
                             <div class="w-[70px] h-[70px]">
                                 <img src="/assets/icons/menu-reports.png" alt="Reports"
                                     class="w-full h-full object-contain" />
                             </div>
-                            <div class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
+                            <div id="SideBarReportsBtnEffect"
+                                class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
                             <span class="text-xl font-bold">Reports</span>
                         </a>
-
-                        <a href="./settings.html"
-                            class="group h-[70px] flex items-center gap-4 px-4 rounded-md cursor-pointer transition hover:bg-white bg-transparent relative">
+                        <a href="./settings.html" id="SideBarSettingsBtn"
+                            class="group h-[75px] flex items-center gap-4 px-4 cursor-pointer transition bg-gray-100 hover:bg-white relative">
                             <div class="w-[70px] h-[70px]">
                                 <img src="/assets/icons/menu-settings.png" alt="Settings"
                                     class="w-full h-full object-contain" />
                             </div>
-                            <div class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
+                            <div id="SideBarSettingsBtnEffect"
+                                class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
                             <span class="text-xl font-bold">Settings</span>
                         </a>
-
-                        <a href="./support.html"
-                            class="group h-[70px] flex items-center gap-4 px-4 rounded-md cursor-pointer transition hover:bg-white bg-transparent relative">
+                        <a href="./support.html" id="SideBarSupportBtn"
+                            class="group h-[75px] flex items-center gap-4 px-4 cursor-pointer transition bg-gray-100 hover:bg-white relative">
                             <div class="w-[70px] h-[70px]">
                                 <img src="/assets/icons/menu-support.png" alt="Support"
                                     class="w-full h-full object-contain" />
                             </div>
-                            <div class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
+                            <div id="SideBarSupportBtnEffect"
+                                class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
                             <span class="text-xl font-bold">Support</span>
                         </a>
-
-                        <a href="/logout"
-                            class="group h-[70px] flex items-center gap-4 px-4 rounded-md cursor-pointer transition hover:bg-white bg-transparent relative">
+                        <a href="#" id="SideBarLogoutBtn"
+                            class="group h-[75px] flex items-center gap-4 px-4 cursor-pointer transition bg-gray-100 hover:bg-white relative">
                             <div class="w-[70px] h-[70px]">
                                 <img src="/assets/icons/menu-logout.png" alt="Logout"
                                     class="w-full h-full object-contain" />
                             </div>
-                            <div class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
+                            <div id="SideBarLogoutBtnEffect"
+                                class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
                             <span class="text-xl font-bold">Logout</span>
                         </a>
                     </nav>
                 </div>
-
-
                 <!-- Footer -->
                 <div class="text-[8px] text-gray-500 text-center space-y-1 px-2 mt-[1.38em] mb-4">
                     <p>© 2014–2025 – All Rights Reserved</p>
@@ -771,6 +784,7 @@
     </div>
 
     <script src="./js/single.js"></script>
+    <script src="./js/index.js"></script>
 </body>
 
 </html>
