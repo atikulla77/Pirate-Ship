@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Ship</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -18,7 +18,7 @@
     <div class="md:flex bg-white">
 
         <!-- SideBar -->
-        <div class="">
+        <div class=" bg-gray-100">
             <!-- Mobile Top Bar -->
             <div class="md:hidden flex items-center justify-between px-4 py-3 bg-black text-white shadow">
                 <img src="/icons/logo.svg" alt="logo" class="w-[50px] h-[50px]" />
@@ -39,17 +39,18 @@
                     <!-- Desktop Logo -->
                     <div class="hidden md:flex items-center justify-center">
                         <div class="bg-black w-[215px] h-[215px] flex items-center justify-center">
-                            <img src="/icons/logo.svg" alt="logo" class="w-[250px] h-[250px]" />
+                            <img src="/assets/icons/logo.svg" alt="logo" class="w-[250px] h-[250px]" />
                         </div>
                     </div>
 
                     <!-- Menu Items -->
                     <nav class="">
                         <!-- Repeat this block for each menu item -->
-                        <a href="/ship.html"
+                        <a href="./ship.html"
                             class="group h-[70px] flex items-center gap-4 px-4 rounded-md cursor-pointer transition bg-white relative">
                             <div class="w-[70px] h-[70px]">
-                                <img src="/icons/menu-ship.png" alt="Ship" class="w-full h-full object-contain" />
+                                <img src="/assets/icons/menu-ship.png" alt="Ship"
+                                    class="w-full h-full object-contain" />
                             </div>
                             <div class="absolute inset-0 transition-opacity opacity-0 bg-gray-100/50"></div>
                             <span class="text-xl font-bold">Ship</span>
@@ -58,7 +59,8 @@
                         <a href="/rates"
                             class="group h-[70px] flex items-center gap-4 px-4 rounded-md cursor-pointer transition hover:bg-white bg-transparent relative">
                             <div class="w-[70px] h-[70px]">
-                                <img src="/icons/menu-rates.png" alt="Rates" class="w-full h-full object-contain" />
+                                <img src="/assets/icons/menu-rates.png" alt="Rates"
+                                    class="w-full h-full object-contain" />
                             </div>
                             <div class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
                             <span class="text-xl font-bold">Rates</span>
@@ -67,7 +69,8 @@
                         <a href="/reports"
                             class="group h-[70px] flex items-center gap-4 px-4 rounded-md cursor-pointer transition hover:bg-white bg-transparent relative">
                             <div class="w-[70px] h-[70px]">
-                                <img src="/icons/menu-reports.png" alt="Reports" class="w-full h-full object-contain" />
+                                <img src="/assets/icons/menu-reports.png" alt="Reports"
+                                    class="w-full h-full object-contain" />
                             </div>
                             <div class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
                             <span class="text-xl font-bold">Reports</span>
@@ -76,7 +79,7 @@
                         <a href="/settings"
                             class="group h-[70px] flex items-center gap-4 px-4 rounded-md cursor-pointer transition hover:bg-white bg-transparent relative">
                             <div class="w-[70px] h-[70px]">
-                                <img src="/icons/menu-settings.png" alt="Settings"
+                                <img src="/assets/icons/menu-settings.png" alt="Settings"
                                     class="w-full h-full object-contain" />
                             </div>
                             <div class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
@@ -86,7 +89,8 @@
                         <a href="/support"
                             class="group h-[70px] flex items-center gap-4 px-4 rounded-md cursor-pointer transition hover:bg-white bg-transparent relative">
                             <div class="w-[70px] h-[70px]">
-                                <img src="/icons/menu-support.png" alt="Support" class="w-full h-full object-contain" />
+                                <img src="/assets/icons/menu-support.png" alt="Support"
+                                    class="w-full h-full object-contain" />
                             </div>
                             <div class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
                             <span class="text-xl font-bold">Support</span>
@@ -95,7 +99,8 @@
                         <a href="/logout"
                             class="group h-[70px] flex items-center gap-4 px-4 rounded-md cursor-pointer transition hover:bg-white bg-transparent relative">
                             <div class="w-[70px] h-[70px]">
-                                <img src="/icons/menu-logout.png" alt="Logout" class="w-full h-full object-contain" />
+                                <img src="/assets/icons/menu-logout.png" alt="Logout"
+                                    class="w-full h-full object-contain" />
                             </div>
                             <div class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
                             <span class="text-xl font-bold">Logout</span>
@@ -114,13 +119,13 @@
             </aside>
         </div>
         <!-- Main Content -->
-         <div class="flex-1 sm:p-[49px] p-[30px] mb-[4em]">
+        <div class="flex-1 sm:p-[49px] p-[30px] mb-[4em]">
 
-         </div>
+        </div>
     </div>
     </div>
 
-    <script src="setting.js"></script>
+    <script src="./js/ship.js"></script>
 </body>
 
 </html>

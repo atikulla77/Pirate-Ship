@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        integrity="sha512-sV+e2vOTFy83DbyTXGReOeVCYuChV8dp1TVtn1ZcAYHqeDsFzM+MqqMfQvbcPkmDoZ7KnNzZr+ZrEPxGL1Zg2g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+    <div class="md:flex bg-white">
+
+        <!-- SideBar -->
+        <div class="bg-gray-100">
+            <!-- Mobile Top Bar -->
+            <div class="md:hidden flex items-center justify-between px-4 py-3 bg-black text-white shadow">
+                <img src="/icons/logo.svg" alt="logo" class="w-[50px] h-[50px]" />
+                <button id="toggleSidebar">
+                    <!-- Bars Icon -->
+                    <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Sidebar -->
+            <aside id="sidebar"
+                class="bg-gray-100 text-black h-screen flex flex-col justify-between fixed top-[85px] left-0 z-50 w-full md:static md:top-0 md:w-auto md:translate-x-0 transform -translate-x-full transition-transform duration-300 md:block">
+                <div class="space-y-2">
+                    <!-- Desktop Logo -->
+                    <div class="hidden md:flex items-center justify-center">
+                        <div class="bg-black w-[215px] h-[215px] flex items-center justify-center">
+                            <img src="/assets/icons/logo.svg" alt="logo" class="w-[250px] h-[250px]" />
+                        </div>
+                    </div>
+
+                    <!-- Menu Items -->
+                    <nav class="">
+                        <!-- Repeat this block for each menu item -->
+                        <a href="./ship.html"
+                            class="group h-[70px] flex items-center gap-4 px-4 rounded-md cursor-pointer transition bg-white relative">
+                            <div class="w-[70px] h-[70px]">
+                                <img src="/assets/icons/menu-ship.png" alt="Ship"
+                                    class="w-full h-full object-contain" />
+                            </div>
+                            <div class="absolute inset-0 transition-opacity opacity-0 bg-gray-100/50"></div>
+                            <span class="text-xl font-bold">Ship</span>
+                        </a>
+
+                        <a href="/rates"
+                            class="group h-[70px] flex items-center gap-4 px-4 rounded-md cursor-pointer transition hover:bg-white bg-transparent relative">
+                            <div class="w-[70px] h-[70px]">
+                                <img src="/assets/icons/menu-rates.png" alt="Rates"
+                                    class="w-full h-full object-contain" />
+                            </div>
+                            <div class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
+                            <span class="text-xl font-bold">Rates</span>
+                        </a>
+
+                        <a href="/reports"
+                            class="group h-[70px] flex items-center gap-4 px-4 rounded-md cursor-pointer transition hover:bg-white bg-transparent relative">
+                            <div class="w-[70px] h-[70px]">
+                                <img src="/assets/icons/menu-reports.png" alt="Reports"
+                                    class="w-full h-full object-contain" />
+                            </div>
+                            <div class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
+                            <span class="text-xl font-bold">Reports</span>
+                        </a>
+
+                        <a href="/settings"
+                            class="group h-[70px] flex items-center gap-4 px-4 rounded-md cursor-pointer transition hover:bg-white bg-transparent relative">
+                            <div class="w-[70px] h-[70px]">
+                                <img src="/assets/icons/menu-settings.png" alt="Settings"
+                                    class="w-full h-full object-contain" />
+                            </div>
+                            <div class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
+                            <span class="text-xl font-bold">Settings</span>
+                        </a>
+
+                        <a href="/support"
+                            class="group h-[70px] flex items-center gap-4 px-4 rounded-md cursor-pointer transition hover:bg-white bg-transparent relative">
+                            <div class="w-[70px] h-[70px]">
+                                <img src="/assets/icons/menu-support.png" alt="Support"
+                                    class="w-full h-full object-contain" />
+                            </div>
+                            <div class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
+                            <span class="text-xl font-bold">Support</span>
+                        </a>
+
+                        <a href="/logout"
+                            class="group h-[70px] flex items-center gap-4 px-4 rounded-md cursor-pointer transition hover:bg-white bg-transparent relative">
+                            <div class="w-[70px] h-[70px]">
+                                <img src="/assets/icons/menu-logout.png" alt="Logout"
+                                    class="w-full h-full object-contain" />
+                            </div>
+                            <div class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
+                            <span class="text-xl font-bold">Logout</span>
+                        </a>
+                    </nav>
+                </div>
+
+
+                <!-- Footer -->
+                <div class="text-[8px] text-gray-500 text-center space-y-1 px-2 mt-[1.38em] mb-4">
+                    <p>© 2014–2025 – All Rights Reserved</p>
+                    <p>
+                        <a href="#" class="underline">Manage your Privacy & Data Settings</a>
+                    </p>
+                </div>
+            </aside>
+        </div>
+        <!-- Main Content -->
+        <div class="flex-1 sm:p-[47px] p-[30px] mb-[6em]">
+
+            <h1 class="text-[30px] font-[700] text-[#000] leading-[1.1] mb-[12px]">Md Atikulla</h1>
+            <p class="text-[17px] text-[#333] leading-[1.42857143] font-[500]">8871 Cypress Manor Dr</p>
+            <div class="flex items-center gap-2 mb-[48px]">
+                <p class="text-[17px] text-[#333] leading-[1.42857143] font-[500]">Tampa FL 33647-3842</p>
+                <i class="fa-solid fa-paste text-[1em] text-[#999] hover:text-[#2a6496] cursor-pointer transition"></i>
+            </div>
+            <!-- Shipment Details -->
+            <div class="mb-[48px] py-[7px]">
+                <label id="ShipmentDetailsCheckbox" class="flex cursor-pointer space-x-[5px]">
+                    <div
+                        class="w-[20px] h-[20px] border-[2px] border-[#999] rounded-[50%] flex items-center justify-center cursor-pointer">
+                        <i class="fa-solid fa-plus text-[12px] text-[#999]" id="ShipmentDetailsWrapperPlusIcon"></i>
+                        <i class="fa-solid fa-minus text-[12px] text-[#999] hidden"
+                            id="ShipmentDetailsWrapperMinusIcon"></i>
+                    </div>
+                    <p class="font-[500] text-[15px] text-[#333]">Shipment Details</p>
+                </label>
+                <div id="ShipmentDetailsWrapper"
+                    class="hidden p-[16px_16px_16px_24px] flex lg:flex-row flex-col justify-between bg-[#f5f5f5] border-[2px] border-[#ccc] rounded-[5px] mt-[10px] lg:gap-0 gap-[16px]">
+
+                    <div class="lg:w-[33.3333%] w-full text-[14px]">
+                        <h1 class="font-[500] text-[#666] pb-[6px] leading-[1.42857143]">Ship From Address</h1>
+                        <p class="text-[#999] leading-[1.42857143]">Md Atikulla</p>
+                        <p class="text-[#999] leading-[1.42857143]">8871 Cypress Manor Dr</p>
+                        <p class="text-[#999] leading-[1.42857143]">Tampa FL 33647-3842</p>
+                    </div>
+                    <div class="lg:w-[33.3333%] w-full text-[14px] lg:pl-[8px] pl-0">
+                        <h1 class="font-[500] text-[#666] pb-[6px] leading-[1.42857143]">Package Details</h1>
+                        <p class="text-[#999] font-[500] leading-[1.42857143]">Package Type: <span
+                                class="pl-[4px] font-[400]">Box or Rigid Packaging</span></p>
+                        <p class="text-[#999] font-[500] leading-[1.42857143]">Dimensions: <span
+                                class="pl-[4px] font-[400]">22x22x22"</span></p>
+                        <p class="text-[#999] font-[500] leading-[1.42857143]">Weight: <span
+                                class="pl-[4px] font-[400]">23 lbs 6 oz</span></p>
+                        <p class="text-[#999] font-[500] leading-[1.42857143]">Free Online Delivery Confirmation</p>
+                    </div>
+                    <div class="lg:w-[33.3333%] w-full text-[14px] lg:pl-[16px] pl-0">
+                        <h1 class="font-[500] text-[#666] pb-[6px] leading-[1.42857143]">Label Details <i
+                                class="fa-solid fa-circle-question text-[1.1em] text-[#999] hover:text-[#2a6496] cursor-pointer"></i>
+                        </h1>
+                        <p class="text-[#999] font-[500] leading-[1.42857143]">Label Size: <span
+                                class="pl-[4px] font-[400]">4x6"</span></p>
+                        <p class="text-[#999] font-[500] leading-[1.42857143]">Label Filetype: <span
+                                class="pl-[4px] font-[400]">PDF</span></p>
+                    </div>
+
+                </div>
+            </div>
+            <!-- Choose a Service  -->
+            <div class="flex flex-wrap items-center justify-between pb-[6px]">
+                <p class="font-[500] text-[17px] text-[#333] ">Choose a Service </p>
+                <div class="[@media(min-width:460px)]:w-fit w-full flex justify-end">
+                    <p class="text-[14px]"><b>Sort by:</b> <span>Best</span> <span class="text-[#666]">|</span> <span
+                            class="text-[#00a9ff] underline">Cheapest</span> <span class="text-[#666]">|</span> <span
+                            class="text-[#00a9ff] underline">USPS</span> <span class="text-[#666]">|</span> <span
+                            class="text-[#00a9ff] underline">UPS</span></p>
+                </div>
+
+            </div>
+            <div class="mb-[48px]">
+                <div
+                    class="px-[12px] pt-[12px] pb-[10px] flex justify-between items-center border-[2px] border-[#ccc] rounded-t-[5px] bg-gradient-to-b from-[#fff] to-[#ebebebeb] relative">
+                    <div class="">
+                        <div class="flex">
+                            <img src="./assets/images/ChooseAService/ups.png" class="h-[22px]" alt="">
+                            <h1 class="text-[17px] font-[400] text-[#000] leading-[19px] pl-[4px] mt-[-1px]">UPS® Ground
+                            </h1>
+                        </div>
+                        <div class="m-[7px_0px_9px]">
+                            <p class="text-[14px] leading-[17px]"><span
+                                    class="leading-[20px] text-[13px] p-[2.7px_6.43px] font-[700] text-[#fff] bg-[#000] uppercase">BEST</span>
+                                <span class="text-[#00a9ff] pl-[2px]"> $100 carrier liability</span> <span
+                                    class="text-[#999]"> • Estimated delivery Wednesday 7/2 by 11:00 PM if shipped
+                                    today</span>
+                            </p>
+                        </div>
+                        <p class="text-[14px] font-[400] text-[#999] pt-[6px] leading-[20px]">Save 57% • Deepest
+                            discount
+                            available</p>
+                    </div>
+                    <div class="text-right pr-[1.8rem]">
+                        <strike class="text-[14px] text-[#999] leading-[17px] pt-[6px] pr-[3px]">$90.00 retail</strike>
+                        <h1 class="text-[27px] leading-[27px] font-[700] mt-[-4px]">$39.14</h1>
+                    </div>
+                    <div class="absolute right-[15px] top-0 h-full flex justify-center items-center">
+
+                        <i class="fa-solid fa-caret-down text-[1.3em] text-[#000]"></i>
+                    </div>
+                </div>
+                <div
+                    class="p-[12px] text-[13px] flex justify-between items-center bg-[#fff] border-x-[1px] border-b-[1px] border-[#ccc]">
+                    <p class="text-[#666]">1 × UPS® Ground @ $26.19</p>
+                    <p class="text-[#000]">$26.19</p>
+                </div>
+                <div
+                    class="p-[12px] text-[13px] flex justify-between items-center bg-[#fff] border-x-[1px] border-b-[1px] border-[#ccc]">
+                    <p class="text-[#666]">1 × Additional Handling @ $12.95 <i
+                            class="fa-solid fa-circle-question text-[0.85em] text-[#00a9ff] cursor-pointer ml-[3px]"></i>
+                    </p>
+                    <p class="text-[#000]">$26.19</p>
+                </div>
+                <div
+                    class="p-[12px] text-[14px] flex justify-between items-center rounded-b-[5px] border-x-[1px] border-b-[1px] border-[#ccc] bg-[#f5f5f5]">
+                    <p class="text-[#000] font-[500]">1 label</p>
+                    <p class="text-[#000] font-[500]">$39.14</p>
+                </div>
+            </div>
+            <!-- Finish Purchase  -->
+            <div class="flex items-center pb-[6px]">
+                <p class="font-[500] text-[17px] text-[#333]">Finish Purchase </p>
+            </div>
+            <div class="border-[2px] border-[#ccc] bg-[#f5f5f5] rounded-[5px] mb-[48px]">
+                <div class="p-[12px] text-[14px] flex justify-between items-center">
+                    <p class="text-[#000] font-[500] flex items-center">Ship Date <i
+                            class="fa-solid fa-circle-question text-[1.1em] text-[#999] hover:text-[#2a6496] cursor-pointer ml-[4px] mt-[1px]"></i>
+                    </p>
+                    <div class="pl-[12px] lg:w-[37.5%] w-[67.4%] relative">
+                        <select
+                            class="w-[100%] appearance-none border-2 border-gray-300 focus:outline-none focus:border-[#00a9ff] px-4 py-[13px] rounded-[5px] bg-gradient-to-b from-[#fff] to-[#ebebeb] text-md">
+                            <option>Tuesday, 07/01/2025</option>
+                            <option>Wednesday, 07/02/2025</option>
+                            <option>Thursday, 07/03/2025</option>
+                            <option>Friday, 07/04/2025</option>
+                            <option>Saturday, 07/05/2025</option>
+                            <option>Monday, 07/07/2025</option>
+                            <option>Tuesday, 07/08/2025</option>
+                        </select>
+                        <div class="absolute right-[15px] top-0 h-full flex justify-center items-center">
+                            <i class="fa-solid fa-caret-down text-[1.3em] text-[#000]"></i>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="p-[12px] text-[14px] flex justify-between items-center bg-[#dbf1d5] border-t-[1px] border-[#ccc]">
+                    <p class="text-[#2ca200] font-[500]">Current Account Balance</p>
+                    <p class="text-[#2ca200] font-[500]">$0.00</p>
+                </div>
+                <div
+                    class="p-[12px] text-[14px] flex justify-between items-center bg-[#ebebeb] border-t-[1px] border-[#ccc]">
+                    <p class="text-[#000] font-[500]">Total Cost</p>
+                    <p class="text-[#000] font-[500]">$39.14</p>
+                </div>
+                <div class="p-[12px] text-[14px] flex justify-between sm:gap-0 gap-[8px] items-center bg-[#ebebeb] border-t-[1px] border-[#ccc]">
+                    <div class="">
+                        <p class="text-[#000] font-[500] flex items-center">Total Charge <i
+                                class="fa-solid fa-circle-question text-[1.1em] text-[#999] hover:text-[#2a6496] cursor-pointer ml-[4px] mt-[1px]"></i>
+                        </p>
+                        <p class="text-[14px] text-[#333] font-[400]">Your default payment amount is currently <span
+                                class="text-[#00a9ff]">$0</span></p>
+                    </div>
+                    <div class="lg:w-[27.8%] sm:w-[67.4%] w-[85%] flex">
+                        <div class="p-[10px_16px] bg-[#ebebeb] border-l-2 border-y-2 border-gray-300 flex justify-center items-center rounded-l-[4px]">
+                            <i class="fa-solid fa-dollar-sign text-[18px] text-[#999]"></i>
+                        </div>
+                        <div class="floating-label-wrapper relative w-full">
+                            <input type="text" placeholder="" value="39.14" 
+                                class="w-full peer floating-input border-2 border-gray-300 rounded-r-[4px] px-[12px] h-[50px] text-sm font-[500] focus:outline-none text-[#000] focus:border-[#00a9ff] text-right" />
+                        </div>
+
+                    </div>
+                </div>
+                <div
+                    class="p-[12px] text-[14px] flex justify-between items-center bg-[#dbf1d5] border-t-[1px] border-[#ccc]">
+                    <p class="text-[#2ca200] font-[500]">Ending Account Balance</p>
+                    <p class="text-[#2ca200] font-[500]">$0.00</p>
+                </div>
+                <div
+                    class="p-[12px] text-[14px] flex justify-end items-center bg-[#f5f5f5] border-t-[1px] border-[#ccc]">
+                    <p class="text-[#000] font-[400] leading-[1.42857]">You need to add a <span
+                            class="text-[#00a9ff] pr-[6px]">Payment Method</span> <span class="text-[#00a9ff]">Hide
+                            Payment Details</span></p>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center">
+
+                <div class="flex flex-col justify-start text-left">
+                    <p class="text-[#00a9ff] text-[13px] p-[3px_0px] underline">Previous Step</p>
+                    <p class="text-[#b92c28] text-[13px] p-[3px_0px] underline">Cancel & Delete Label</p>
+                </div>
+
+                <button
+                    class="lg:w-fit w-full lg:h-fit h-[83px] lg:text-[1.777em] text-[1.1em] lg:p-[25px_93px] p-[0px] text-white rounded-[10px] font-[700] bg-[#2ca200] border-[3px] border-[#008e00] transition-colors">
+                    Buy Label
+                </button>
+
+            </div>
+
+
+        </div>
+    </div>
+    </div>
+
+    <script src="./js/summary.js"></script>
+</body>
+
+</html>
