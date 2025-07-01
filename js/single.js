@@ -121,7 +121,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-/* ****Ship From**** */
+// State
+let showCards = false;
+/* ****Type of Packaging**** */
 const PackagingCardsData = [
   {
     id: 1,
@@ -224,10 +226,6 @@ const PackagingCardsData = [
     image: "/assets/images/04.png",
   },
 ];
-
-// State
-let showCards = false;
-/* ****Type of Packaging**** */
 document.addEventListener("DOMContentLoaded", () => {
   const toggleCard = document.getElementById("toggleCard");
   const cardContainer = document.getElementById("packagingCardsContainer");

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ship</title>
+    <title>Settings</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -16,7 +16,6 @@
 <body>
 
     <div class="md:flex bg-white">
-
         <!-- SideBar -->
         <div class=" bg-gray-100">
             <!-- Mobile Top Bar -->
@@ -120,12 +119,29 @@
         </div>
         <!-- Main Content -->
         <div class="flex-1 sm:p-[49px] p-[30px] mb-[4em]">
+            <h1 class="text-[30px] font-[700] text-[#000] leading-[1.1] mb-[48px]">Settings</h1>
 
+            <div id="setting-container" class="">
+            </div>
+            <div class="w-full text-[.7em] md:hidden flex flex-col justify-center text-center text-[#00a9ff] mt-[10em]">
+                <p class="text-[#000]">© 2014-2025 - All Rights Reserved</p>
+                <div class="w-full flex items-center justify-center">
+                    <a href="#" class="">Privacy Policy</a><span class="mx-[2px]"> - </span>
+                    <a href="#" class="">Terms of Use</a><span class="mx-[2px]"> - </span>
+                    <a href="#" class="">DPA</a>
+                </div>
+                <div class="w-full flex items-center justify-center">
+                    <a href="#" class="">Cookies Notice</a><span class="mx-[2px]"> - </span>
+                    <a href="#" class="">Manage Your Privacy & Data Settings</a>
+                </div>
+            </div>
         </div>
+
+
     </div>
     </div>
 
-    <script src="./js/ship.js"></script>
+    <script src="./js/setting.js"></script>
 </body>
 
 </html>

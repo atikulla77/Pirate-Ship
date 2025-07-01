@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rates</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        integrity="sha512-sV+e2vOTFy83DbyTXGReOeVCYuChV8dp1TVtn1ZcAYHqeDsFzM+MqqMfQvbcPkmDoZ7KnNzZr+ZrEPxGL1Zg2g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+    <div class="md:flex bg-white">
+        <!-- SideBar -->
+        <div class=" bg-gray-100">
+            <!-- Mobile Top Bar -->
+            <div class="md:hidden flex items-center justify-between px-4 py-3 bg-black text-white shadow">
+                <img src="/icons/logo.svg" alt="logo" class="w-[50px] h-[50px]" />
+                <button id="toggleSidebar">
+                    <!-- Bars Icon -->
+                    <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Sidebar -->
+            <aside id="sidebar"
+                class="bg-gray-100 text-black h-screen flex flex-col justify-between fixed top-[85px] left-0 z-50 w-full md:static md:top-0 md:w-auto md:translate-x-0 transform -translate-x-full transition-transform duration-300 md:block">
+                <div class="space-y-2">
+                    <!-- Desktop Logo -->
+                    <div class="hidden md:flex items-center justify-center">
+                        <div class="bg-black w-[215px] h-[215px] flex items-center justify-center">
+                            <img src="/assets/icons/logo.svg" alt="logo" class="w-[250px] h-[250px]" />
+                        </div>
+                    </div>
+
+                    <!-- Menu Items -->
+                    <nav class="">
+                        <!-- Repeat this block for each menu item -->
+                        <a href="./ship.html"
+                            class="group h-[70px] flex items-center gap-4 px-4 rounded-md cursor-pointer transition bg-white relative">
+                            <div class="w-[70px] h-[70px]">
+                                <img src="/assets/icons/menu-ship.png" alt="Ship"
+                                    class="w-full h-full object-contain" />
+                            </div>
+                            <div class="absolute inset-0 transition-opacity opacity-0 bg-gray-100/50"></div>
+                            <span class="text-xl font-bold">Ship</span>
+                        </a>
+
+                        <a href="./rates.html"
+                            class="group h-[70px] flex items-center gap-4 px-4 rounded-md cursor-pointer transition hover:bg-white bg-transparent relative">
+                            <div class="w-[70px] h-[70px]">
+                                <img src="/assets/icons/menu-rates.png" alt="Rates"
+                                    class="w-full h-full object-contain" />
+                            </div>
+                            <div class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
+                            <span class="text-xl font-bold">Rates</span>
+                        </a>
+
+                        <a href="./reports.html"
+                            class="group h-[70px] flex items-center gap-4 px-4 rounded-md cursor-pointer transition hover:bg-white bg-transparent relative">
+                            <div class="w-[70px] h-[70px]">
+                                <img src="/assets/icons/menu-reports.png" alt="Reports"
+                                    class="w-full h-full object-contain" />
+                            </div>
+                            <div class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
+                            <span class="text-xl font-bold">Reports</span>
+                        </a>
+
+                        <a href="./settings.html"
+                            class="group h-[70px] flex items-center gap-4 px-4 rounded-md cursor-pointer transition hover:bg-white bg-transparent relative">
+                            <div class="w-[70px] h-[70px]">
+                                <img src="/assets/icons/menu-settings.png" alt="Settings"
+                                    class="w-full h-full object-contain" />
+                            </div>
+                            <div class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
+                            <span class="text-xl font-bold">Settings</span>
+                        </a>
+
+                        <a href="./support.html"
+                            class="group h-[70px] flex items-center gap-4 px-4 rounded-md cursor-pointer transition hover:bg-white bg-transparent relative">
+                            <div class="w-[70px] h-[70px]">
+                                <img src="/assets/icons/menu-support.png" alt="Support"
+                                    class="w-full h-full object-contain" />
+                            </div>
+                            <div class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
+                            <span class="text-xl font-bold">Support</span>
+                        </a>
+
+                        <a href="/logout"
+                            class="group h-[70px] flex items-center gap-4 px-4 rounded-md cursor-pointer transition hover:bg-white bg-transparent relative">
+                            <div class="w-[70px] h-[70px]">
+                                <img src="/assets/icons/menu-logout.png" alt="Logout"
+                                    class="w-full h-full object-contain" />
+                            </div>
+                            <div class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
+                            <span class="text-xl font-bold">Logout</span>
+                        </a>
+                    </nav>
+                </div>
+
+
+                <!-- Footer -->
+                <div class="text-[8px] text-gray-500 text-center space-y-1 px-2 mt-[1.38em] mb-4">
+                    <p>© 2014–2025 – All Rights Reserved</p>
+                    <p>
+                        <a href="#" class="underline">Manage your Privacy & Data Settings</a>
+                    </p>
+                </div>
+            </aside>
+        </div>
+        <!-- Main Content -->
+        <div class="flex-1 sm:p-[47px] p-[30px] mb-[4em]">
+            <h1 class="text-[30px] font-[700] text-[#000] leading-[1.1] mb-[48px]">Quick Rate Quote</h1>
+            <!-- Ship From -->
+            <div class="mb-[24px]">
+                <h1 class="text-[1em] font-[600] text-[#333] py-[6px]">Ship From</h1>
+
+                <div id="shipFromWrapper"
+                    class="rounded-[5px] border-2 border-gray-300 bg-gradient-to-b from-[#fff] to-[#ebebebeb] overflow-hidden">
+
+                    <!-- Clickable Select -->
+                    <div id="shipFromSelect" class="w-full flex items-center justify-between p-[12px] cursor-pointer">
+                        <div>
+                            <h1 class="text-[1em] font-[400] text-[#030303] leading-[19px]">M Jibon</h1>
+                            <div class="mt-[6px]">
+                                <p class="text-[.824em] leading-[17px] font-[400] text-[#999]">
+                                    <strong>Physical Address:</strong> M Jibon, Dewanganj, Jamalpur CA 90089<br />
+                                    <strong>Return Address:</strong> M Jibon, Dewanganj, Jamalpur CA 90089
+                                </p>
+                            </div>
+                        </div>
+                        <i id="shipFromSelectDownIcon"
+                            class="fa-solid fa-caret-down text-[1.3em] text-[#000] mr-[2px] "></i>
+                        <i id="shipFromSelectUpIcon"
+                            class="fa-solid fa-caret-up text-[1.3em] text-[#000] mr-[2px] hidden"></i>
+                    </div>
+
+                    <!-- Create New Ship From Address -->
+                    <div id="shipFromOption"
+                        class="w-full h-[66.89px] hidden flex items-center justify-between p-[12px] cursor-pointer border-t-[1px] border-[#ccc] hover:bg-[#d9f2ff] hover:border-[#00a9ff]">
+                        <div>
+                            <h1 class="text-[1em] font-[400] text-[#030303] leading-[19px]">Create New Ship From Address
+                            </h1>
+                            <p class="text-[.824em] font-[400] text-[#999] mt-[6px]">Create New Ship From Address</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- Ship To -->
+            <div class="mb-[1.389em]">
+                <h1 class="text-[1em] font-[600] text-[#333] py-[6px]">Ship To</h1>
+
+                <div class="flex items-center gap-7">
+                    <div class="relative w-full">
+                        <select
+                            class=" appearance-none border-2 border-gray-300 focus:outline-none focus:border-[#00a9ff] px-4 py-[13px]  rounded w-full bg-gradient-to-b from-[#fff] to-[#ebebeb] text-md">
+                            <option>United States</option>
+                            <option>Canada</option>
+                            <option>United Kingdom</option>
+                        </select>
+                        <div class="absolute right-[15px] top-0 h-full flex justify-center items-center">
+                            <i class="fa-solid fa-caret-down text-[1.3em] text-[#000]"></i>
+                        </div>
+                    </div>
+                    <div class="floating-label-wrapper relative w-full">
+                        <input type="text" placeholder=""
+                            class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
+
+                        <label class="floating-label large">
+                            Zipcode
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+            <!-- Type of Packaging -->
+            <div class="mb-[1.389em] pt-[7px]">
+                <h1 class="text-[1em] font-[600] text-[#333] mb-[6.8px]">Type of Packaging</h1>
+
+                <div id="packagingWrapper"
+                    class="rounded-[5px] border-2 border-gray-300 bg-gradient-to-b from-[#fff] to-[#ebebebeb] overflow-hidden">
+
+                    <!-- Toggle Header -->
+                    <div id="toggleCard"
+                        class="w-full flex items-center justify-between p-[10px] cursor-pointer  rounded-[4px]">
+                        <div class="flex items-center">
+                            <img src="/assets/images/Parcel-box.png" alt="Parcel"
+                                class="w-[130px] h-[130px] object-cover" />
+                            <div class="ml-[.9em]">
+                                <h1 class="text-[1em] font-[400] text-[#030303]">Box or Rigid Packaging</h1>
+                                <p class="text-[.824em] font-[400] text-[#999] mt-[3px]">Any custom box or thick parcel
+                                </p>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-caret-down text-[1.3em] text-[#000]"></i>
+                    </div>
+
+                    <!-- Mapped Cards -->
+                    <div id="packagingCardsContainer"></div>
+                </div>
+            </div>
+            <!-- Package Dimensions (Inches) -->
+            <div class="mb-[24px] pt-[7px]">
+                <div class="mb-[30px]">
+                    <h1 class="text-[1em] font-[600] text-[#000] mb-[6.8px]">
+                        Package Dimensions (Inches)
+                    </h1>
+                    <div class="flex justify-between items-center w-full lg:space-x-0 space-x-[.694em]">
+
+                        <div class="floating-label-wrapper relative lg:w-[25%] w-[33.333%]">
+                            <input type="text" placeholder=""
+                                class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
+
+                            <label class="floating-label large">
+                                Length
+                            </label>
+                        </div>
+                        <div class="max-w-[102px]">
+                            <div class="w-[102px] lg:flex hidden justify-center text-[17px] text-[#999]">
+                                x
+                            </div>
+                        </div>
+                        <div class="floating-label-wrapper relative lg:w-[25%] w-[33.333%]">
+                            <input type="text" placeholder=""
+                                class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
+
+                            <label class="floating-label large">
+                                Width
+                            </label>
+                        </div>
+                        <div class="max-w-[102px]">
+                            <div class="w-[102px] lg:flex hidden justify-center text-[17px] text-[#999]">
+                                x
+                            </div>
+                        </div>
+                        <div class="floating-label-wrapper relative lg:w-[25%] w-[33.333%]">
+                            <input type="text" placeholder=""
+                                class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
+
+                            <label class="floating-label large">
+                                Height
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="">
+                    <h1 class="text-[1em] font-[600] text-[#000] mb-[6.8px]">
+                        Package Weight
+                    </h1>
+
+                    <div class="flex items-center w-full lg:space-x-0 space-x-[24px]">
+                        <div class="floating-label-wrapper relative lg:w-[25%] w-[50%]">
+                            <input type="text" placeholder=""
+                                class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
+
+                            <label class="floating-label large">
+                                Pounds
+                            </label>
+                        </div>
+                            <div class="w-[154px] lg:flex hidden justify-center text-[17px] text-[#999]">
+                                +
+                            </div>
+                        <div class="floating-label-wrapper relative lg:w-[25%] w-[50%]">
+                            <input type="text" placeholder=""
+                                class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
+
+                            <label class="floating-label large">
+                                Ounces
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="w-full flex flex-col text-right justify-end">
+                <button
+                    class="lg:w-[320px] w-full lg:h-fit h-[83px] lg:text-[1.777em] text-[1.1em] lg:p-[25px_0px] p-[0px] text-white rounded-[10px] font-[700] bg-[#2ca200] border-[3px] border-[#008e00] transition-colors ml-auto">
+                    Get Rate Quote*
+                </button>
+                <p class="text-[.824em] text-[#999] font-[400]">*Rates may vary based on actual shipping address</p>
+            </div>
+            <div class="m-[24px_0px] p-[24px] bg-[#f5f5f5] flex flex-col gap-[16px]">
+                <h1 class="text-[1.235em] text-[#333] font-[700] pt-[12px] pb-[1.389em]">Download the USPS Rate Sheets</h1>
+                <p class="text-[17px] text-[#333] leading-[1.42857143] mt-[-1.389em]">Pirate Ship is 100% free, passing through the cheapest rates available for all USPS and UPS services with no fees or hidden costs 👍</p>
+                <button class="w-fit text-[17px] font-[400] text-[#fff] p-[2px_9px_0px] bg-[#00a9ff] border-[2px] border-[#0098e6] h-[50px] rounded-[5px]">View USPS Rate Sheets</button>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script src="./js/rates.js"></script>
+</body>
+
+</html>
