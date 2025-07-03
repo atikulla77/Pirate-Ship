@@ -79,3 +79,14 @@ body {
   from {right: 0px;}
   to {right: -100px; z-index: 51 !important;}
 }
+
+
+    #map {
+      height: 389px;
+      width: 100%;
+    }
+
+    /* Optional: Hide attribution/branding */
+    .leaflet-control-attribution {
+      display: none;
+    }

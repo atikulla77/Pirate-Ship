@@ -1,790 +1,951 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="icon" href="./assets/icons/favicon.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-        integrity="sha512-sV+e2vOTFy83DbyTXGReOeVCYuChV8dp1TVtn1ZcAYHqeDsFzM+MqqMfQvbcPkmDoZ7KnNzZr+ZrEPxGL1Zg2g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-
-<body>
-
-    <div class="md:flex bg-white">
-        <!-- SideBar -->
-        <div class=" bg-gray-100" style="height: -webkit-fill-available;">
-            <!-- Mobile Top Bar -->
-            <div class="md:hidden flex items-center justify-between px-4 py-3 bg-black text-white shadow">
-                <img src="/icons/logo.svg" alt="logo" class="w-[50px] h-[50px]" />
-                <button id="toggleSidebar">
-                    <!-- Bars Icon -->
-                    <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                </button>
-            </div>
-
-            <!-- Sidebar -->
-            <aside id="sidebar"
-                class="bg-gray-100 text-black h-full flex flex-col justify-between md:sticky fixed top-[85px] left-0 z-50 w-full md:top-0 md:w-auto md:translate-x-0 transform -translate-x-full transition-transform duration-300 md:block">
-                <div class="">
-                    <!-- Desktop Logo -->
-                    <div class="hidden md:flex items-center justify-center">
-                        <div class="bg-black w-[215px] h-[215px] flex items-center justify-center">
-                            <img src="/assets/icons/logo.svg" alt="logo" class="w-[250px] h-[250px]" />
-                        </div>
-                    </div>
-
-                    <!-- Menu Items -->
-                    <nav class="relative">
-                        <div class="relative" id="SideBarShipBtnContainer">
-                            <!-- Main link -->
-                            <a href="./ship.html" id="SideBarShipBtn"
-                                class="group h-[75px] flex items-center gap-4 px-4 cursor-pointer transition bg-gray-100 hover:bg-white relative z-[50]">
-                                <div class="w-[70px] h-[70px]">
-                                    <img src="/assets/icons/menu-ship.png" alt="ship"
-                                        class="w-full h-full object-contain" />
-                                </div>
-                                <div id="SideBarShipBtnEffect"
-                                    class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
-                                <span class="text-xl font-bold">Ship</span>
-                            </a>
-
-                            <!-- Ship All Items -->
-                            <div class="absolute top-0 right-0 z-[48] h-[75px]" id="SideBarShipBtnItems">
-                                <button onclick="window.location.href='./single.html'" id="SideBarShipSingleBtn"
-                                    class="w-[100px] h-full bg-[#f5f5f5] hover:bg-white flex flex-col justify-center items-center transition">
-                                    <img src="/assets/images/singlePage.png" alt="singlePage"
-                                        class="w-[45px] h-[45px] object-contain" />
-                                    <p class="text-[14px] font-[500]">Single</p>
-                                </button>
-                            </div>
-                        </div>
-
-                        <a href="./rates.html" id="SideBarRatesBtn"
-                            class="group h-[75px] flex items-center gap-4 px-4 cursor-pointer transition bg-gray-100 hover:bg-white relative z-[50]">
-                            <div class="w-[70px] h-[70px]">
-                                <img src="/assets/icons/menu-rates.png" alt="Rates"
-                                    class="w-full h-full object-contain" />
-                            </div>
-                            <div id="SideBarRatesBtnEffect"
-                                class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
-                            <span class="text-xl font-bold">Rates</span>
-                        </a>
-                        <a href="./reports.html" id="SideBarReportsBtn"
-                            class="group h-[75px] flex items-center gap-4 px-4 cursor-pointer transition bg-gray-100 hover:bg-white relative">
-                            <div class="w-[70px] h-[70px]">
-                                <img src="/assets/icons/menu-reports.png" alt="Reports"
-                                    class="w-full h-full object-contain" />
-                            </div>
-                            <div id="SideBarReportsBtnEffect"
-                                class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
-                            <span class="text-xl font-bold">Reports</span>
-                        </a>
-                        <a href="./settings.html" id="SideBarSettingsBtn"
-                            class="group h-[75px] flex items-center gap-4 px-4 cursor-pointer transition bg-gray-100 hover:bg-white relative">
-                            <div class="w-[70px] h-[70px]">
-                                <img src="/assets/icons/menu-settings.png" alt="Settings"
-                                    class="w-full h-full object-contain" />
-                            </div>
-                            <div id="SideBarSettingsBtnEffect"
-                                class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
-                            <span class="text-xl font-bold">Settings</span>
-                        </a>
-                        <a href="./support.html" id="SideBarSupportBtn"
-                            class="group h-[75px] flex items-center gap-4 px-4 cursor-pointer transition bg-gray-100 hover:bg-white relative">
-                            <div class="w-[70px] h-[70px]">
-                                <img src="/assets/icons/menu-support.png" alt="Support"
-                                    class="w-full h-full object-contain" />
-                            </div>
-                            <div id="SideBarSupportBtnEffect"
-                                class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
-                            <span class="text-xl font-bold">Support</span>
-                        </a>
-                        <a href="#" id="SideBarLogoutBtn"
-                            class="group h-[75px] flex items-center gap-4 px-4 cursor-pointer transition bg-gray-100 hover:bg-white relative">
-                            <div class="w-[70px] h-[70px]">
-                                <img src="/assets/icons/menu-logout.png" alt="Logout"
-                                    class="w-full h-full object-contain" />
-                            </div>
-                            <div id="SideBarLogoutBtnEffect"
-                                class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
-                            <span class="text-xl font-bold">Logout</span>
-                        </a>
-                    </nav>
-                </div>
-                <!-- Footer -->
-                <div class="text-[8px] text-gray-500 text-center space-y-1 px-2 mt-[1.38em] mb-4">
-                    <p>© 2014–2025 – All Rights Reserved</p>
-                    <p>
-                        <a href="#" class="underline">Manage your Privacy & Data Settings</a>
-                    </p>
-                </div>
-            </aside>
-        </div>
-        <!-- Main Content -->
-        <div class="flex-1 sm:p-[49px] p-[30px] mb-[4em]">
-            <h1 class="text-[1.777em] font-[700] mb-8">
-                Create a Shipping Label
-            </h1>
-
-            <!-- Ship To Paste Address -->
-            <section class="mb-[1.489em]">
-                <h2 class="font-semibold text-[1em] mb-2">
-                    Ship To
-                    <span id="ShipPasteAddress" class="text-[#00a9ff] text-[.824em] cursor-pointer">Paste Address</span>
-                </h2>
-
-                <div id="ShipPasteAddressTextarea" class="relative w-full hidden mb-[1.2em]">
-                    <textarea
-                        placeholder="Paste the full or partial address here (and edit it if needed) to auto-fill the fields below"
-                        rows="5"
-                        class="peer border-2 border-gray-300 rounded w-full p-[6px_12px] text-[1em] font-[500] focus:outline-none text-[#000] focus:border-[#00a9ff] resize-none"></textarea>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-[1.389em]">
-
-                    <div class="floating-label-wrapper relative w-full">
-                        <input type="text" placeholder=""
-                            class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
-
-                        <label class="floating-label large">
-                            Email (optional)
-                        </label>
-                    </div>
-                    <div class="floating-label-wrapper relative w-full">
-                        <input type="text" placeholder=""
-                            class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
-
-                        <label class="floating-label large">
-                            Phone (optional)
-                        </label>
-                    </div>
-                    <div class="floating-label-wrapper relative w-full">
-                        <input type="text" placeholder=""
-                            class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
-
-                        <label class="floating-label large">
-                            Name
-                        </label>
-                    </div>
-                    <div class="floating-label-wrapper relative w-full">
-                        <input type="text" placeholder=""
-                            class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
-
-                        <label class="floating-label large">
-                            Company (optional)
-                        </label>
-                    </div>
-                    <div class="floating-label-wrapper relative w-full">
-                        <input type="text" placeholder=""
-                            class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
-
-                        <label class="floating-label large">
-                            Address
-                        </label>
-                    </div>
-                    <div class="floating-label-wrapper relative w-full">
-                        <input type="text" placeholder=""
-                            class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
-
-                        <label class="floating-label large">
-                            Apt / Unit / Suite / etc. (optional)
-                        </label>
-                    </div>
-                    <div class="col-span-full">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-7">
-                            <div class="flex sm:flex-row   gap-7">
-                                <div class="floating-label-wrapper relative w-full">
-                                    <input type="text" placeholder=""
-                                        class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
-
-                                    <label class="floating-label large">
-                                        City
-                                    </label>
-                                </div>
-                                <div class="floating-label-wrapper relative w-full">
-                                    <input type="text" placeholder=""
-                                        class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
-
-                                    <label class="floating-label large">
-                                        State
-                                    </label>
-                                </div>
-                                <div class="floating-label-wrapper relative w-full">
-                                    <input type="text" placeholder=""
-                                        class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
-
-                                    <label class="floating-label large">
-                                        Zipcode
-                                    </label>
-                                </div>
-                            </div>
-                            <select
-                                class=" appearance-none border-2 border-gray-300 focus:outline-none focus:border-[#00a9ff] px-4 py-[13px]  rounded w-full bg-gradient-to-b from-[#fff] to-[#ebebeb] text-md">
-                                <option>United States</option>
-                                <option>Canada</option>
-                                <option>United Kingdom</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- Rubber Stamps -->
-            <div class="mb-[34px]">
-                <label class="flex items-center space-x-[5px] text-sm">
-                    <input type="checkbox" id="rubberStampCheckbox" class="w-[15px] h-[15px] cursor-pointer" />
-                    <p>
-                        <span class="font-[600] text-[16px]">Rubber Stamps</span>
-                        <span class="text-sm text-[#999]">Print extra information on the label</span>
-                        <span class="text-[#00a9ff] underline">Learn more</span>
-                    </p>
-                </label>
-                <div id="rubberStampInputs" class="grid grid-cols-1 md:grid-cols-2 gap-7 pt-3 hidden">
-                    <div class="floating-label-wrapper relative w-full">
-                        <input type="text" placeholder=""
-                            class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
-
-                        <label class="floating-label large">
-                            Rubber Stamp / Custom Reference 1
-                        </label>
-                    </div>
-                    <div class="floating-label-wrapper relative w-full">
-                        <input type="text" placeholder=""
-                            class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
-
-                        <label class="floating-label large">
-                            Rubber Stamp / Custom Reference 2
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <!-- Ship From -->
-            <div class="mb-[1.389em]">
-                <h1 class="text-[1em] font-[600] text-[#333]">Ship From</h1>
-
-                <div id="shipFromWrapper"
-                    class="rounded-[5px] mt-[6.8px] border-2 border-gray-300 bg-gradient-to-b from-[#fff] to-[#ebebebeb] overflow-hidden">
-
-                    <!-- Clickable Select -->
-                    <div id="shipFromSelect"
-                        class="w-full h-[66.89px] flex items-center justify-between p-[10px] cursor-pointer">
-                        <div>
-                            <h1 class="text-[1em] font-[400] text-[#030303]">M Jibon</h1>
-                            <p class="text-[.824em] font-[400] text-[#999] mt-[3px]">
-                                M Jibon, Dewanganj, Jamalpur CA 90089
-                            </p>
-                        </div>
-                        <i class="fa-solid fa-caret-down text-[1.1em] text-[#000] mr-[2px] "></i>
-                    </div>
-
-                    <!-- Additional Option -->
-                    <div id="shipFromOption"
-                        class="w-full h-[66.89px] hidden flex items-center justify-between p-[10px] cursor-pointer border-t-[1px] border-[#ccc] hover:bg-[#d9f2ff] hover:border-[#00a9ff]">
-                        <div>
-                            <h1 class="text-[1em] font-[400] text-[#030303]">Don’t use saved Ship From Address</h1>
-                            <p class="text-[.824em] font-[400] text-[#999] mt-[3px]">Create New Ship From Address</p>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <!-- Type of Packaging -->
-            <div class="mb-[1.389em] pt-[7px]">
-                <h1 class="text-[1em] font-[600] text-[#333] mb-[6.8px]">Type of Packaging</h1>
-
-                <div id="packagingWrapper"
-                    class="rounded-[5px] border-2 border-gray-300 bg-gradient-to-b from-[#fff] to-[#ebebebeb] overflow-hidden">
-
-                    <!-- Toggle Header -->
-                    <div id="toggleCard"
-                        class="w-full flex items-center justify-between p-[10px] cursor-pointer  rounded-[4px]">
-                        <div class="flex items-center">
-                            <img src="/assets/images/Parcel-box.png" alt="Parcel"
-                                class="w-[130px] h-[130px] object-cover" />
-                            <div class="ml-[.9em]">
-                                <h1 class="text-[1em] font-[400] text-[#030303]">Box or Rigid Packaging</h1>
-                                <p class="text-[.824em] font-[400] text-[#999] mt-[3px]">Any custom box or thick parcel
-                                </p>
-                            </div>
-                        </div>
-                        <i class="fa-solid fa-caret-down text-[1.3em] text-[#000]"></i>
-                    </div>
-
-                    <!-- Mapped Cards -->
-                    <div id="packagingCardsContainer"></div>
-                </div>
-            </div>
-            <!-- Package Dimensions (Inches) -->
-            <div class="pb-[1.389em] pt-[7px]">
-                <div class="mb-[1.389em]">
-                    <h1 class="text-[1em] font-[600] text-[#000] mb-[6.8px]">
-                        Package Dimensions (Inches)
-                    </h1>
-                    <div class="flex items-center lg:max-w-[91%] w-full lg:space-x-0 space-x-[.694em]">
-
-                        <div class="floating-label-wrapper relative w-full">
-                            <input type="text" placeholder=""
-                                class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
-
-                            <label class="floating-label large">
-                                Length
-                            </label>
-                        </div>
-                        <div class="max-w-[102px]">
-                            <div class="w-[102px] lg:flex hidden justify-center text-[17px] text-[#999]">
-                                x
-                            </div>
-                        </div>
-                        <div class="floating-label-wrapper relative w-full">
-                            <input type="text" placeholder=""
-                                class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
-
-                            <label class="floating-label large">
-                                Width
-                            </label>
-                        </div>
-                        <div class="max-w-[102px]">
-                            <div class="w-[102px] lg:flex hidden justify-center text-[17px] text-[#999]">
-                                x
-                            </div>
-                        </div>
-                        <div class="floating-label-wrapper relative w-full">
-                            <input type="text" placeholder=""
-                                class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
-
-                            <label class="floating-label large">
-                                Height
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="">
-                    <h1 class="text-[1em] font-[600] text-[#000] mb-[6.8px]">
-                        Package Weight
-                    </h1>
-
-                    <div class="flex items-center lg:max-w-[57%] w-full lg:space-x-0 space-x-[.694em]">
-                        <div class="floating-label-wrapper relative w-full">
-                            <input type="text" placeholder=""
-                                class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
-
-                            <label class="floating-label large">
-                                Pounds
-                            </label>
-                        </div>
-                        <div class="max-w-[102px]">
-                            <div class="w-[102px] lg:flex hidden justify-center text-[17px] text-[#999]">
-                                +
-                            </div>
-                        </div>
-                        <div class="floating-label-wrapper relative w-full">
-                            <input type="text" placeholder=""
-                                class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
-
-                            <label class="floating-label large">
-                                Ounces
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Insurance -->
-            <div class="my-[1em]">
-                <label class="flex space-x-[5px] text-sm pt-[7px]">
-                    <input type="checkbox" id="insuranceCheckbox" class="w-[15px] h-[15px] cursor-pointer mt-[2px]" />
-                    <p class="gap-[3px]">
-                        <span class="font-[600] text-[15px]">Insurance </span>
-                        <span class="text-[.824em] text-[#999]">
-                            Enter the total value of your shipment to add coverage by InsureShield
-                        </span>
-                        <span class="text-[#00a9ff] text-[.824em]">
-                            View Pricing, Excluded Items, and Terms
-                        </span>
-                    </p>
-                </label>
-
-                <div id="insuranceInputWrapper" class="pt-3 hidden">
-                    <div class="floating-label-wrapper relative w-full">
-                        <input type="text" placeholder=""
-                            class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
-
-                        <label class="floating-label large">
-                            Declared Package Value ($)
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <!-- Extra Services -->
-            <div class="mb-[34px]">
-                <label class="flex space-x-[5px] text-sm pt-[7px]">
-                    <div id="ExtraServicesCheckbox"
-                        class="w-[20px] h-[20px] border-[2px] border-[#999] rounded-[50%] ml-[-2px] flex items-center justify-center cursor-pointer">
-                        <i class="fa-solid fa-plus text-[12px] text-[#999]" id="ExtraServicesWrapperPlusIcon"></i>
-                        <i class="fa-solid fa-minus text-[12px] text-[#999] hidden"
-                            id="ExtraServicesWrapperMinusIcon"></i>
-                    </div>
-                    <p class="gap-[3px]">
-                        <span class="font-[600] text-[15px]">Extra Services </span>
-                        <span class="text-[.824em] text-[#999]">
-                            <span id="TittleExtraServices">
-                                <span id="NoExtraServicesSpan">No extra services</span>
-                            </span> activated
-                        </span>
-                    </p>
-                </label>
-
-                <div id="ExtraServicesWrapper"
-                    class="p-[.2em_1em_.2em_1.5em] bg-[#f5f5f5] border-[2px] border-[#ccc] rounded-[5px] mt-[10px] hidden">
-
-                    <div class="my-[.5em]">
-                        <!-- Checkbox -->
-                        <div class="flex items-center min-h-[27px] py-[7px] space-x-[5px]">
-                            <input type="checkbox" id="signatureCheckbox" class="w-[15px] h-[15px]" />
-                            <p><span class="font-[600] text-[15px]">Signature Confirmation</span></p>
-                        </div>
-                        <!-- Dropdown options container -->
-                        <div id="signatureOptionsWrapper"
-                            class="rounded-[5px] hidden border-2 border-gray-300 bg-gradient-to-b from-[#fff] to-[#ebebebeb] overflow-hidden">
-
-                            <!-- Toggle Box -->
-                            <div id="signatureToggle"
-                                class="w-full h-[66.89px] flex items-center justify-between p-[10px] cursor-pointer">
-                                <div>
-                                    <h1 class="text-[1em] font-[400] text-[#030303]">Signature Confirmation</h1>
-                                    <p class="text-[.824em] font-[400] text-[#999] mt-[3px]">Signature required for
-                                        delivery</p>
-                                </div>
-                                <i class="fa-solid fa-caret-down text-[1.3em] text-[#000]"></i>
-                            </div>
-
-                            <!-- Hidden Option -->
-                            <div id="signatureOption"
-                                class="w-full h-[66.89px] flex items-center justify-between p-[10px] border-t-[1px] border-[#ccc] hover:bg-[#d9f2ff] hover:border-[#00a9ff] cursor-pointer hidden">
-                                <div>
-                                    <h1 class="text-[1em] font-[400] text-[#030303]">Adult Signature</h1>
-                                    <p class="text-[.824em] font-[400] text-[#999] mt-[3px]">
-                                        21+ age verification required for delivery
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="my-[.5em]">
-                        <div class="flex items-center min-h-[27px] py-[7px] space-x-[5px] mb-[10px]">
-                            <input type="checkbox" id="returnLabelsCheckbox" disabled class="w-[15px] h-[15px]" />
-                            <p class="opacity-[0.6]">
-                                <span class="font-[600] text-[15px]">Return Labels </span>
-                                <span class="text-[.824em] text-[#999]">
-                                    To enable Return Labels,
-                                </span>
-                                <span class="text-[#00a9ff] text-[.824em] underline">
-                                    just let us know.
-                                </span>
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="my-[.5em]">
-                        <div class="flex items-center min-h-[27px] py-[7px] space-x-[5px] mb-[10px]">
-                            <input type="checkbox" id="qualifiesforMediaMail" class="w-[15px] h-[15px]" />
-                            <p><span class="font-[600] text-[15px]">Qualifies for Media Mail</span> <span
-                                    class="text-[.824em] text-[#999]">
-                                    Educational material only: books, music, or films (other
-                                    products or any advertising prohibited)
-                                </span></p>
-
-                        </div>
-                    </div>
-                    <div class="my-[.5em]">
-                        <div class="flex items-center min-h-[27px] py-[7px] space-x-[5px] mb-[10px]">
-                            <input type="checkbox" id="IrregularPackage" class="w-[15px] h-[15px]" />
-                            <p><span class="font-[600] text-[15px]">Irregular Package</span> <span
-                                    class="text-[.824em] text-[#999]">For unusual package types like tubes, wooden
-                                    crates, tires, etc. </span> <span class="text-[#00a9ff] text-[.824em]">
-                                    Learn More
-                                </span> </p>
-                        </div>
-                    </div>
-                </div>
-
-
-
-
-
-            </div>
-            <!-- Hazardous Materials -->
-            <div class="my-[1em]">
-                <label class="flex space-x-[5px] text-sm pt-[7px]">
-                    <input type="checkbox" id="HazardousMaterialsCheckbox"
-                        class="w-[15px] h-[15px] cursor-pointer mt-[2px]" />
-                    <p class="gap-[3px]">
-                        <span class="font-[600] text-[15px]">Hazardous Materials</span>
-                        <span class="text-[.824em] text-[#999]">
-                            Perfume, nail polish, hair spray, dry ice, lithium batteries, firearms, lighters, fuels,
-                            etc.
-                        </span>
-                        <span class="text-[#00a9ff] text-[.824em]">
-                            Learn how to ship Hazardous Materials
-                        </span>
-                    </p>
-                </label>
-
-                <div id="HazardousMaterialsInputWrapper" class=" hidden">
-                    <div
-                        class="mt-3 text-[16px] bg-gradient-to-b from-[#f2dede] to-[#e7c3c3] border-[1px] border-[#dca7a7] text-shadow-[0_1px_0px_#ffffff33] font-[600] text-[#a94442] mb-[20px] p-[15px] rounded-[4px]">
-                        By using Pirate Ship, you certify that your shipment does not
-                        contain any undeclared
-                        <span class="text-[#00a9ff]">hazardous materials</span> or any
-                        matter
-                        <span class="text-[#00a9ff]">
-                            prohibited by law or postal regulation.
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <!-- Customs Form -->
-            <div class="my-[1em]">
-                <label class="flex space-x-[5px] text-sm pt-[7px]">
-                    <input type="checkbox" id="CustomsFormCheckbox" class="w-[15px] h-[15px] cursor-pointer mt-[2px]" />
-                    <p class="gap-[3px]">
-                        <span class="font-[600] text-[15px]">Customs Form</span>
-                        <span class="text-[.824em] text-[#999]">
-                            Required for International, Military APO/FPO, and U.S. Territories
-                        </span>
-                    </p>
-                </label>
-
-                <div id="CustomsFormInputWrapper" class="hidden mt-[1em]">
-                    <div class="floating-label-wrapper relative w-full">
-                        <input type="text" placeholder=""
-                            class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]"
-                            value="M Jibon" />
-                        <label class="floating-label large">
-                            Sign Customs Form As
-                        </label>
-                    </div>
-                    <div class="mt-[1.389em]">
-                        <h1 class="text-[1em] font-[600] text-[#333] pt-[7px]">
-                            Package Content Type
-                        </h1>
-                        <div id="packageContentTypeWrapper"
-                            class="rounded-[5px] mt-[6.8px] border-2 border-gray-300 bg-gradient-to-b from-[#fff] to-[#ebebebeb] overflow-hidden">
-
-                            <!-- Toggle Header -->
-                            <div id="packageToggle"
-                                class="w-full flex items-center justify-between p-[10px] cursor-pointer">
-                                <div>
-                                    <h1 class="text-[1em] font-[400] text-[#030303]">Merchandise</h1>
-                                    <p class="text-[.824em] font-[400] text-[#999] mt-[3px]">
-                                        Products that were purchased by your recipient; they will probably have to show
-                                        a receipt
-                                        proving the declared value is correct to receive the package.
-                                    </p>
-                                </div>
-                                <i class="fa-solid fa-caret-down text-[1.3em] text-[#000]"></i>
-                            </div>
-
-                            <!-- Documents -->
-                            <div id="contentOption1"
-                                class="w-full flex items-center justify-between p-[10px] border-t-[1px] border-b-[1px] border-[#ccc] hover:bg-[#d9f2ff] hover:border-[#00a9ff] cursor-pointer hidden">
-                                <div>
-                                    <h1 class="text-[1em] font-[400] text-[#030303]">Documents</h1>
-                                    <p class="text-[.824em] font-[400] text-[#999] mt-[3px]">
-                                        For contracts and other printed documents only.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <!-- Gift -->
-                            <div id="contentOption2"
-                                class="w-full flex items-center justify-between p-[10px] border-t-[1px] border-[#ccc] hover:bg-[#d9f2ff] hover:border-[#00a9ff] cursor-pointer hidden">
-                                <div>
-                                    <h1 class="text-[1em] font-[400] text-[#030303]">Gift</h1>
-                                    <p class="text-[.824em] font-[400] text-[#999] mt-[3px]">
-                                        Only choose this option if it’s actually a gift… it will not reduce the chance
-                                        of your
-                                        recipient having to pay import duties!
-                                    </p>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div
-                        class="mt-[1.389em] flex md:flex-row flex-col md:justify-between justify-center gap-[11.75px] ">
-                        <div class="md:w-[91.7777777%] w-full">
-                            <h1 class="text-[1em] font-[600] text-[#333] py-[7px]">
-                                Customs Line Item #1
-                                <span class="text-[.824em] text-[#00a9ff] cursor-pointer">
-                                    Add Line Item
-                                </span>
-                            </h1>
-                            <div class="floating-label-wrapper relative w-full">
-                                <input type="text" placeholder=""
-                                    class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
-                                <label class="floating-label large">
-                                    Describe what you're shipping
-                                </label>
-                            </div>
-                            <div class="mt-[1.389em] flex items-center gap-[24px]">
-                                <div class="floating-label-wrapper relative w-full">
-                                    <input type="text" placeholder=""
-                                        class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
-                                    <label class="floating-label large">
-                                        Quantity
-                                    </label>
-                                </div>
-                                <div class="floating-label-wrapper relative w-full">
-                                    <input type="text" placeholder=""
-                                        class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
-                                    <label class="floating-label large">
-                                        Total Value in $
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="mt-[1.389em] flex items-center sm:gap-[24px] gap-[10px]">
-                                <div class="floating-label-wrapper relative w-full">
-                                    <input type="text" placeholder=""
-                                        class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
-                                    <label class="floating-label large">
-                                        Total Weight lbs
-                                    </label>
-                                </div>
-                                <div class="lg:w-[52px] w-fit flex justify-center items-center text-[22px] text-[#999]">
-                                    +
-                                </div>
-                                <div class="floating-label-wrapper relative w-full">
-                                    <input type="text" placeholder=""
-                                        class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
-                                    <label class="floating-label large">
-                                        Total Weight Oz
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="mt-[1.389em] flex lg:flex-row flex-col items-center gap-[24px]">
-                                <div class="w-full relative">
-                                    <div class="floating-label-wrapper relative w-full">
-                                        <input type="text" placeholder=""
-                                            class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
-                                        <label class="floating-label large">
-                                            Harmonization #
-                                        </label>
-                                    </div>
-                                    <p class="text-center text-[.824em] text-[#999] p-[.3em]">
-                                        Required for Certain Countries -
-                                        <span class="text-[.824em] text-[#00a9ff]">
-                                            Learn more
-                                        </span>
-                                    </p>
-                                    <button
-                                        class="h-[50px] p-[.7em] flex text-[1em] font-[600] text-[#fff] bg-[#00a9ff] border-[2px] border-[#0086ff] rounded-[0_5px_5px_0] absolute right-0 top-0 cursor-pointer">
-                                        Search #'s
-                                    </button>
-                                </div>
-                                <div class="w-full">
-                                    <select
-                                        class=" appearance-none border-2 border-gray-300 focus:outline-none focus:border-[#00a9ff] px-4 py-[13px]  rounded w-full bg-gradient-to-b from-[#fff] to-[#ebebeb] text-md">
-                                        <option>United States</option>
-                                        <option>Canada</option>
-                                        <option>United Kingdom</option>
-                                    </select>
-                                    <p class="text-center text-[.824em] text-[#999] p-[.3em]">
-                                        Item(s) Origin
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div
-                            class="md:w-[8.33333333%] w-full h-[51px] md:mt-[2.28em] mt-0 flex justify-center items-center">
-                            <i class="fa-regular fa-trash-can text-[#999] text-[21px] cursor-pointer "></i>
-                        </div>
-                    </div>
-                    <h1 class="text-[1em] font-[600] text-[#333] py-[7px] mt-[1.389em]">
-                        International Tax IDs
-                    </h1>
-                    <div class="flex lg:flex-row flex-col items-center gap-[24px]">
-                        <div class="w-full">
-                            <div class="floating-label-wrapper relative w-full">
-                                <input type="text" placeholder=""
-                                    class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
-
-                                <label class="floating-label large">
-                                    Sender Tax ID
-                                </label>
-                            </div>
-                            <p class="text-center text-[.824em] text-[#999] p-[.3em]">
-                                Optional: IOSS/HMRC/VOEC -
-                                <span class="text-[.824em] text-[#00a9ff]">
-                                    Learn more
-                                </span>
-                            </p>
-                        </div>
-                        <div class="w-full">
-                            <div class="floating-label-wrapper relative w-full">
-                                <input type="text" placeholder=""
-                                    class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
-
-                                <label class="floating-label large">
-                                    Recipient Tax ID
-                                </label>
-                            </div>
-                            <p class="text-center text-[.824em] text-[#999] p-[.3em]">
-                                Mexico/Brazil/EU (EORI) -
-                                <span class="text-[.824em] text-[#00a9ff]">
-                                    Learn more
-                                </span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Save Package -->
-            <div class="mt-[1em] mb-[1.389em]">
-                <label class="flex space-x-[5px] text-sm pt-[7px]">
-                    <input type="checkbox" id="SavePackageCheckbox" class="w-[15px] h-[15px] cursor-pointer mt-[2px]" />
-                    <p class="gap-[3px]">
-                        <span class="font-[600] text-[15px]">Save Package </span>
-                        <span class="text-[.824em] text-[#999]">
-                            Save your settings for repeated use
-                        </span>
-                    </p>
-                </label>
-
-                <div id="SavePackageInputWrapper" class="pt-3 hidden">
-                    <div class="floating-label-wrapper relative w-full">
-                        <input type="text" placeholder=""
-                            class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
-
-                        <label class="floating-label large">
-                            Enter a nickname for your Saved Package
-                        </label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="w-full flex justify-end mt-[.694em] mb-[15rem]">
-                <button
-                    class="lg:w-fit w-full lg:h-fit h-[83px] lg:text-[1.777em] text-[1.1em] lg:p-[25px_100px] p-[0px] text-white rounded-[10px] font-[700] bg-[#2ca200] border-[3px] border-[#008e00] transition-colors">
-                    Get Rates
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <script src="./js/single.js"></script>
-    <script src="./js/index.js"></script>
-</body>
-
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Ship Form</title>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+		<link rel="stylesheet" href="style.css" />
+		<script src="https://cdn.tailwindcss.com"></script>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+			integrity="sha512-sV+e2vOTFy83DbyTXGReOeVCYuChV8dp1TVtn1ZcAYHqeDsFzM+MqqMfQvbcPkmDoZ7KnNzZr+ZrEPxGL1Zg2g=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer" />
+	</head>
+
+	<body>
+		<div class="md:flex bg-white">
+			<!-- SideBar -->
+			<div class="bg-gray-100" style="height: -webkit-fill-available">
+				<!-- Mobile Top Bar -->
+				<div
+					class="md:hidden flex items-center justify-between px-4 py-3 bg-black text-white shadow">
+					<img src="/icons/logo.svg" alt="logo" class="w-[50px] h-[50px]" />
+					<button id="toggleSidebar">
+						<!-- Bars Icon -->
+						<svg
+							id="menuIcon"
+							xmlns="http://www.w3.org/2000/svg"
+							class="w-7 h-7"
+							fill="none"
+							viewBox="0 0 24 24"
+							stroke="currentColor">
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M4 6h16M4 12h16M4 18h16" />
+						</svg>
+					</button>
+				</div>
+
+				<!-- Sidebar -->
+				<aside
+					id="sidebar"
+					class="bg-gray-100 text-black h-full flex flex-col justify-between md:sticky fixed top-[85px] left-0 z-50 w-full md:top-0 md:w-auto md:translate-x-0 transform -translate-x-full transition-transform duration-300 md:block">
+					<div class="">
+						<!-- Desktop Logo -->
+						<div class="hidden md:flex items-center justify-center">
+							<div
+								class="bg-black w-[215px] h-[215px] flex items-center justify-center">
+								<img
+									src="./assets/icons/logo.svg"
+									alt="logo"
+									class="w-[250px] h-[250px]" />
+							</div>
+						</div>
+
+						<!-- Menu Items -->
+						<nav class="relative">
+							<div class="relative" id="SideBarShipBtnContainer">
+								<!-- Main link -->
+								<a
+									href="./ship.html"
+									id="SideBarShipBtn"
+									class="group h-[75px] flex items-center gap-4 px-4 cursor-pointer transition bg-gray-100 hover:bg-white relative z-[50]">
+									<div class="w-[70px] h-[70px]">
+										<img
+											src="./assets/icons/menu-ship.png"
+											alt="ship"
+											class="w-full h-full object-contain" />
+									</div>
+									<div
+										id="SideBarShipBtnEffect"
+										class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
+									<span class="text-xl font-bold">Ship</span>
+								</a>
+
+								<!-- Ship All Items -->
+								<div
+									class="absolute top-0 right-0 z-[48] h-[75px]"
+									id="SideBarShipBtnItems">
+									<button
+										onclick="window.location.href='./single.html'"
+										id="SideBarShipSingleBtn"
+										class="w-[100px] h-full bg-[#f5f5f5] hover:bg-white flex flex-col justify-center items-center transition">
+										<img
+											src="./assets/images/singlePage.png"
+											alt="singlePage"
+											class="w-[45px] h-[45px] object-contain" />
+										<p class="text-[14px] font-[500]">Single</p>
+									</button>
+								</div>
+							</div>
+
+							<a
+								href="./rates.html"
+								id="SideBarRatesBtn"
+								class="group h-[75px] flex items-center gap-4 px-4 cursor-pointer transition bg-gray-100 hover:bg-white relative z-[50]">
+								<div class="w-[70px] h-[70px]">
+									<img
+										src="./assets/icons/menu-rates.png"
+										alt="Rates"
+										class="w-full h-full object-contain" />
+								</div>
+								<div
+									id="SideBarRatesBtnEffect"
+									class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
+								<span class="text-xl font-bold">Rates</span>
+							</a>
+							<a
+								href="./reports.html"
+								id="SideBarReportsBtn"
+								class="group h-[75px] flex items-center gap-4 px-4 cursor-pointer transition bg-gray-100 hover:bg-white relative">
+								<div class="w-[70px] h-[70px]">
+									<img
+										src="./assets/icons/menu-reports.png"
+										alt="Reports"
+										class="w-full h-full object-contain" />
+								</div>
+								<div
+									id="SideBarReportsBtnEffect"
+									class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
+								<span class="text-xl font-bold">Reports</span>
+							</a>
+							<a
+								href="./settings.html"
+								id="SideBarSettingsBtn"
+								class="group h-[75px] flex items-center gap-4 px-4 cursor-pointer transition bg-gray-100 hover:bg-white relative">
+								<div class="w-[70px] h-[70px]">
+									<img
+										src="./assets/icons/menu-settings.png"
+										alt="Settings"
+										class="w-full h-full object-contain" />
+								</div>
+								<div
+									id="SideBarSettingsBtnEffect"
+									class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
+								<span class="text-xl font-bold">Settings</span>
+							</a>
+							<a
+								href="./support.html"
+								id="SideBarSupportBtn"
+								class="group h-[75px] flex items-center gap-4 px-4 cursor-pointer transition bg-gray-100 hover:bg-white relative">
+								<div class="w-[70px] h-[70px]">
+									<img
+										src="./assets/icons/menu-support.png"
+										alt="Support"
+										class="w-full h-full object-contain" />
+								</div>
+								<div
+									id="SideBarSupportBtnEffect"
+									class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
+								<span class="text-xl font-bold">Support</span>
+							</a>
+							<a
+								href="#"
+								id="SideBarLogoutBtn"
+								class="group h-[75px] flex items-center gap-4 px-4 cursor-pointer transition bg-gray-100 hover:bg-white relative">
+								<div class="w-[70px] h-[70px]">
+									<img
+										src="./assets/icons/menu-logout.png"
+										alt="Logout"
+										class="w-full h-full object-contain" />
+								</div>
+								<div
+									id="SideBarLogoutBtnEffect"
+									class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
+								<span class="text-xl font-bold">Logout</span>
+							</a>
+						</nav>
+					</div>
+					<!-- Footer -->
+					<div
+						class="text-[8px] text-gray-500 text-center space-y-1 px-2 mt-[1.38em] mb-4">
+						<p>© 2014–2025 – All Rights Reserved</p>
+						<p>
+							<a href="#" class="underline"
+								>Manage your Privacy & Data Settings</a
+							>
+						</p>
+					</div>
+				</aside>
+			</div>
+			<!-- Main Content -->
+			<div class="flex-1 sm:p-[49px] p-[30px] mb-[4em]">
+				<h1 class="text-[1.777em] font-[700] mb-8">Create a Shipping Label</h1>
+
+				<!-- Ship To Paste Address -->
+				<section class="mb-[1.489em]">
+					<h2 class="font-semibold text-[1em] mb-2">
+						Ship To
+						<span
+							id="ShipPasteAddress"
+							class="text-[#00a9ff] text-[.824em] cursor-pointer"
+							>Paste Address</span
+						>
+					</h2>
+
+					<div
+						id="ShipPasteAddressTextarea"
+						class="relative w-full hidden mb-[1.2em]">
+						<textarea
+							placeholder="Paste the full or partial address here (and edit it if needed) to auto-fill the fields below"
+							rows="5"
+							class="peer border-2 border-gray-300 rounded w-full p-[6px_12px] text-[1em] font-[500] focus:outline-none text-[#000] focus:border-[#00a9ff] resize-none"></textarea>
+					</div>
+					<div class="grid grid-cols-1 md:grid-cols-2 gap-[1.389em]">
+						<div class="floating-label-wrapper relative w-full">
+							<input
+								type="text"
+								placeholder=""
+								class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
+
+							<label class="floating-label large"> Email (optional) </label>
+						</div>
+						<div class="floating-label-wrapper relative w-full">
+							<input
+								type="text"
+								placeholder=""
+								class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
+
+							<label class="floating-label large"> Phone (optional) </label>
+						</div>
+						<div class="floating-label-wrapper relative w-full">
+							<input
+								type="text"
+								placeholder=""
+								class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
+
+							<label class="floating-label large"> Name </label>
+						</div>
+						<div class="floating-label-wrapper relative w-full">
+							<input
+								type="text"
+								placeholder=""
+								class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
+
+							<label class="floating-label large"> Company (optional) </label>
+						</div>
+						<div class="floating-label-wrapper relative w-full">
+							<input
+								type="text"
+								placeholder=""
+								class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
+
+							<label class="floating-label large"> Address </label>
+						</div>
+						<div class="floating-label-wrapper relative w-full">
+							<input
+								type="text"
+								placeholder=""
+								class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
+
+							<label class="floating-label large">
+								Apt / Unit / Suite / etc. (optional)
+							</label>
+						</div>
+						<div class="col-span-full">
+							<div class="grid grid-cols-1 md:grid-cols-2 gap-7">
+								<div class="flex sm:flex-row gap-7">
+									<div class="floating-label-wrapper relative w-full">
+										<input
+											type="text"
+											placeholder=""
+											class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
+
+										<label class="floating-label large"> City </label>
+									</div>
+									<div class="floating-label-wrapper relative w-full">
+										<input
+											type="text"
+											placeholder=""
+											class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
+
+										<label class="floating-label large"> State </label>
+									</div>
+									<div class="floating-label-wrapper relative w-full">
+										<input
+											type="text"
+											placeholder=""
+											class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
+
+										<label class="floating-label large"> Zipcode </label>
+									</div>
+								</div>
+								<select
+									class="appearance-none border-2 border-gray-300 focus:outline-none focus:border-[#00a9ff] px-4 py-[13px] rounded w-full bg-gradient-to-b from-[#fff] to-[#ebebeb] text-md">
+									<option>United States</option>
+									<option>Canada</option>
+									<option>United Kingdom</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</section>
+				<!-- Rubber Stamps -->
+				<div class="mb-[34px]">
+					<label class="flex items-center space-x-[5px] text-sm">
+						<input
+							type="checkbox"
+							id="rubberStampCheckbox"
+							class="w-[15px] h-[15px] cursor-pointer" />
+						<p>
+							<span class="font-[600] text-[16px]">Rubber Stamps</span>
+							<span class="text-sm text-[#999]"
+								>Print extra information on the label</span
+							>
+							<span class="text-[#00a9ff] underline">Learn more</span>
+						</p>
+					</label>
+					<div
+						id="rubberStampInputs"
+						class="grid grid-cols-1 md:grid-cols-2 gap-7 pt-3 hidden">
+						<div class="floating-label-wrapper relative w-full">
+							<input
+								type="text"
+								placeholder=""
+								class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
+
+							<label class="floating-label large">
+								Rubber Stamp / Custom Reference 1
+							</label>
+						</div>
+						<div class="floating-label-wrapper relative w-full">
+							<input
+								type="text"
+								placeholder=""
+								class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
+
+							<label class="floating-label large">
+								Rubber Stamp / Custom Reference 2
+							</label>
+						</div>
+					</div>
+				</div>
+				<!-- Ship From -->
+				<div class="mb-[1.389em]">
+					<h1 class="text-[1em] font-[600] text-[#333]">Ship From</h1>
+
+					<div
+						id="shipFromWrapper"
+						class="rounded-[5px] mt-[6.8px] border-2 border-gray-300 bg-gradient-to-b from-[#fff] to-[#ebebebeb] overflow-hidden">
+						<!-- Clickable Select -->
+						<div
+							id="shipFromSelect"
+							class="w-full h-[66.89px] flex items-center justify-between p-[10px] cursor-pointer">
+							<div>
+								<h1 class="text-[1em] font-[400] text-[#030303]">M Jibon</h1>
+								<p class="text-[.824em] font-[400] text-[#999] mt-[3px]">
+									M Jibon, Dewanganj, Jamalpur CA 90089
+								</p>
+							</div>
+							<i
+								id="shipFormCaretIcon"
+								class="fa-solid fa-caret-down text-[1.3em] text-[#000] transition-transform duration-300"></i>
+						</div>
+
+						<!-- Additional Option -->
+						<div
+							id="shipFromOption"
+							class="w-full h-[66.89px] hidden flex items-center justify-between p-[10px] cursor-pointer border-t-[1px] border-[#ccc] hover:bg-[#d9f2ff] hover:border-[#00a9ff]">
+							<div>
+								<h1 class="text-[1em] font-[400] text-[#030303]">
+									Don’t use saved Ship From Address
+								</h1>
+								<p class="text-[.824em] font-[400] text-[#999] mt-[3px]">
+									Create New Ship From Address
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Type of Packaging -->
+				<div class="mb-[1.389em] pt-[7px]">
+					<h1 class="text-[1em] font-[600] text-[#333] mb-[6.8px]">
+						Type of Packaging
+					</h1>
+
+					<div
+						id="packagingWrapper"
+						class="rounded-[5px] border-2 border-gray-300 bg-gradient-to-b from-[#fff] to-[#ebebebeb] overflow-hidden">
+						<!-- Toggle Header -->
+						<div
+							id="toggleCard"
+							class="w-full flex items-center justify-between p-[10px] cursor-pointer rounded-[4px]">
+							<div class="flex items-center">
+								<img
+									src="./assets/images/Parcel-box.png"
+									alt="Parcel"
+									class="w-[130px] h-[130px] object-cover" />
+								<div class="ml-[.9em]">
+									<h1 class="text-[1em] font-[400] text-[#030303]">
+										Box or Rigid Packaging
+									</h1>
+									<p class="text-[.824em] font-[400] text-[#999] mt-[3px]">
+										Any custom box or thick parcel
+									</p>
+								</div>
+							</div>
+							<i
+								id="caretIcon"
+								class="fa-solid fa-caret-down text-[1.3em] text-[#000] transition-transform duration-300"></i>
+						</div>
+
+						<!-- Mapped Cards -->
+						<div id="packagingCardsContainer"></div>
+					</div>
+				</div>
+				<!-- Package Dimensions (Inches) -->
+				<div class="pb-[1.389em] pt-[7px]">
+					<div class="mb-[1.389em]">
+						<h1 class="text-[1em] font-[600] text-[#000] mb-[6.8px]">
+							Package Dimensions (Inches)
+						</h1>
+						<div
+							class="flex items-center lg:max-w-[91%] w-full lg:space-x-0 space-x-[.694em]">
+							<div class="floating-label-wrapper relative w-full">
+								<input
+									type="text"
+									placeholder=""
+									class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
+
+								<label class="floating-label large"> Length </label>
+							</div>
+							<div class="max-w-[102px]">
+								<div
+									class="w-[102px] lg:flex hidden justify-center text-[17px] text-[#999]">
+									x
+								</div>
+							</div>
+							<div class="floating-label-wrapper relative w-full">
+								<input
+									type="text"
+									placeholder=""
+									class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
+
+								<label class="floating-label large"> Width </label>
+							</div>
+							<div class="max-w-[102px]">
+								<div
+									class="w-[102px] lg:flex hidden justify-center text-[17px] text-[#999]">
+									x
+								</div>
+							</div>
+							<div class="floating-label-wrapper relative w-full">
+								<input
+									type="text"
+									placeholder=""
+									class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
+
+								<label class="floating-label large"> Height </label>
+							</div>
+						</div>
+					</div>
+					<div class="">
+						<h1 class="text-[1em] font-[600] text-[#000] mb-[6.8px]">
+							Package Weight
+						</h1>
+
+						<div
+							class="flex items-center lg:max-w-[57%] w-full lg:space-x-0 space-x-[.694em]">
+							<div class="floating-label-wrapper relative w-full">
+								<input
+									type="text"
+									placeholder=""
+									class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
+
+								<label class="floating-label large"> Pounds </label>
+							</div>
+							<div class="max-w-[102px]">
+								<div
+									class="w-[102px] lg:flex hidden justify-center text-[17px] text-[#999]">
+									+
+								</div>
+							</div>
+							<div class="floating-label-wrapper relative w-full">
+								<input
+									type="text"
+									placeholder=""
+									class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
+
+								<label class="floating-label large"> Ounces </label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Insurance -->
+				<div class="my-[1em]">
+					<label class="flex space-x-[5px] text-sm pt-[7px]">
+						<input
+							type="checkbox"
+							id="insuranceCheckbox"
+							class="w-[15px] h-[15px] cursor-pointer mt-[2px]" />
+						<p class="gap-[3px]">
+							<span class="font-[600] text-[15px]">Insurance </span>
+							<span class="text-[.824em] text-[#999]">
+								Enter the total value of your shipment to add coverage by
+								InsureShield
+							</span>
+							<span class="text-[#00a9ff] text-[.824em]">
+								View Pricing, Excluded Items, and Terms
+							</span>
+						</p>
+					</label>
+
+					<div id="insuranceInputWrapper" class="pt-3 hidden">
+						<div class="floating-label-wrapper relative w-full">
+							<input
+								type="text"
+								placeholder=""
+								class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
+
+							<label class="floating-label large">
+								Declared Package Value ($)
+							</label>
+						</div>
+					</div>
+				</div>
+				<!-- Extra Services -->
+				<div class="mb-[34px]">
+					<label class="flex space-x-[5px] text-sm pt-[7px]">
+						<div
+							id="ExtraServicesCheckbox"
+							class="w-[20px] h-[20px] border-[2px] border-[#999] rounded-[50%] ml-[-2px] flex items-center justify-center cursor-pointer">
+							<i
+								class="fa-solid fa-plus text-[12px] text-[#999]"
+								id="ExtraServicesWrapperPlusIcon"></i>
+							<i
+								class="fa-solid fa-minus text-[12px] text-[#999] hidden"
+								id="ExtraServicesWrapperMinusIcon"></i>
+						</div>
+						<p class="gap-[3px]">
+							<span class="font-[600] text-[15px]">Extra Services </span>
+							<span class="text-[.824em] text-[#999]">
+								<span id="TittleExtraServices">
+									<span id="NoExtraServicesSpan">No extra services</span>
+								</span>
+								activated
+							</span>
+						</p>
+					</label>
+
+					<div
+						id="ExtraServicesWrapper"
+						class="p-[.2em_1em_.2em_1.5em] bg-[#f5f5f5] border-[2px] border-[#ccc] rounded-[5px] mt-[10px] hidden">
+						<div class="my-[.5em]">
+							<!-- Checkbox -->
+							<div
+								class="flex items-center min-h-[27px] py-[7px] space-x-[5px]">
+								<input
+									type="checkbox"
+									id="signatureCheckbox"
+									class="w-[15px] h-[15px]" />
+								<p>
+									<span class="font-[600] text-[15px]"
+										>Signature Confirmation</span
+									>
+								</p>
+							</div>
+							<!-- Dropdown options container -->
+							<div
+								id="signatureOptionsWrapper"
+								class="rounded-[5px] hidden border-2 border-gray-300 bg-gradient-to-b from-[#fff] to-[#ebebebeb] overflow-hidden">
+								<!-- Toggle Box -->
+								<div
+									id="signatureToggle"
+									class="w-full h-[66.89px] flex items-center justify-between p-[10px] cursor-pointer">
+									<div>
+										<h1 class="text-[1em] font-[400] text-[#030303]">
+											Signature Confirmation
+										</h1>
+										<p class="text-[.824em] font-[400] text-[#999] mt-[3px]">
+											Signature required for delivery
+										</p>
+									</div>
+									<i
+										class="fa-solid fa-caret-down text-[1.3em] text-[#000]"></i>
+								</div>
+
+								<!-- Hidden Option -->
+								<div
+									id="signatureOption"
+									class="w-full h-[66.89px] flex items-center justify-between p-[10px] border-t-[1px] border-[#ccc] hover:bg-[#d9f2ff] hover:border-[#00a9ff] cursor-pointer hidden">
+									<div>
+										<h1 class="text-[1em] font-[400] text-[#030303]">
+											Adult Signature
+										</h1>
+										<p class="text-[.824em] font-[400] text-[#999] mt-[3px]">
+											21+ age verification required for delivery
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="my-[.5em]">
+							<div
+								class="flex items-center min-h-[27px] py-[7px] space-x-[5px] mb-[10px]">
+								<input
+									type="checkbox"
+									id="returnLabelsCheckbox"
+									disabled
+									class="w-[15px] h-[15px]" />
+								<p class="opacity-[0.6]">
+									<span class="font-[600] text-[15px]">Return Labels </span>
+									<span class="text-[.824em] text-[#999]">
+										To enable Return Labels,
+									</span>
+									<span class="text-[#00a9ff] text-[.824em] underline">
+										just let us know.
+									</span>
+								</p>
+							</div>
+						</div>
+
+						<div class="my-[.5em]">
+							<div
+								class="flex items-center min-h-[27px] py-[7px] space-x-[5px] mb-[10px]">
+								<input
+									type="checkbox"
+									id="qualifiesforMediaMail"
+									class="w-[15px] h-[15px]" />
+								<p>
+									<span class="font-[600] text-[15px]"
+										>Qualifies for Media Mail</span
+									>
+									<span class="text-[.824em] text-[#999]">
+										Educational material only: books, music, or films (other
+										products or any advertising prohibited)
+									</span>
+								</p>
+							</div>
+						</div>
+						<div class="my-[.5em]">
+							<div
+								class="flex items-center min-h-[27px] py-[7px] space-x-[5px] mb-[10px]">
+								<input
+									type="checkbox"
+									id="IrregularPackage"
+									class="w-[15px] h-[15px]" />
+								<p>
+									<span class="font-[600] text-[15px]">Irregular Package</span>
+									<span class="text-[.824em] text-[#999]"
+										>For unusual package types like tubes, wooden crates, tires,
+										etc.
+									</span>
+									<span class="text-[#00a9ff] text-[.824em]"> Learn More </span>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Hazardous Materials -->
+				<div class="my-[1em]">
+					<label class="flex space-x-[5px] text-sm pt-[7px]">
+						<input
+							type="checkbox"
+							id="HazardousMaterialsCheckbox"
+							class="w-[15px] h-[15px] cursor-pointer mt-[2px]" />
+						<p class="gap-[3px]">
+							<span class="font-[600] text-[15px]">Hazardous Materials</span>
+							<span class="text-[.824em] text-[#999]">
+								Perfume, nail polish, hair spray, dry ice, lithium batteries,
+								firearms, lighters, fuels, etc.
+							</span>
+							<span class="text-[#00a9ff] text-[.824em]">
+								Learn how to ship Hazardous Materials
+							</span>
+						</p>
+					</label>
+
+					<div id="HazardousMaterialsInputWrapper" class="hidden">
+						<div
+							class="mt-3 text-[16px] bg-gradient-to-b from-[#f2dede] to-[#e7c3c3] border-[1px] border-[#dca7a7] text-shadow-[0_1px_0px_#ffffff33] font-[600] text-[#a94442] mb-[20px] p-[15px] rounded-[4px]">
+							By using Pirate Ship, you certify that your shipment does not
+							contain any undeclared
+							<span class="text-[#00a9ff]">hazardous materials</span> or any
+							matter
+							<span class="text-[#00a9ff]">
+								prohibited by law or postal regulation.
+							</span>
+						</div>
+					</div>
+				</div>
+				<!-- Customs Form -->
+				<div class="my-[1em]">
+					<label class="flex space-x-[5px] text-sm pt-[7px]">
+						<input
+							type="checkbox"
+							id="CustomsFormCheckbox"
+							class="w-[15px] h-[15px] cursor-pointer mt-[2px]" />
+						<p class="gap-[3px]">
+							<span class="font-[600] text-[15px]">Customs Form</span>
+							<span class="text-[.824em] text-[#999]">
+								Required for International, Military APO/FPO, and U.S.
+								Territories
+							</span>
+						</p>
+					</label>
+
+					<div id="CustomsFormInputWrapper" class="hidden mt-[1em]">
+						<div class="floating-label-wrapper relative w-full">
+							<input
+								type="text"
+								placeholder=""
+								class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]"
+								value="M Jibon" />
+							<label class="floating-label large"> Sign Customs Form As </label>
+						</div>
+						<div class="mt-[1.389em]">
+							<h1 class="text-[1em] font-[600] text-[#333] pt-[7px]">
+								Package Content Type
+							</h1>
+							<div
+								id="packageContentTypeWrapper"
+								class="rounded-[5px] mt-[6.8px] border-2 border-gray-300 bg-gradient-to-b from-[#fff] to-[#ebebebeb] overflow-hidden">
+								<!-- Toggle Header -->
+								<div
+									id="packageToggle"
+									class="w-full flex items-center justify-between p-[10px] cursor-pointer">
+									<div>
+										<h1 class="text-[1em] font-[400] text-[#030303]">
+											Merchandise
+										</h1>
+										<p class="text-[.824em] font-[400] text-[#999] mt-[3px]">
+											Products that were purchased by your recipient; they will
+											probably have to show a receipt proving the declared value
+											is correct to receive the package.
+										</p>
+									</div>
+									<i
+										class="fa-solid fa-caret-down text-[1.3em] text-[#000]"></i>
+								</div>
+
+								<!-- Documents -->
+								<div
+									id="contentOption1"
+									class="w-full flex items-center justify-between p-[10px] border-t-[1px] border-b-[1px] border-[#ccc] hover:bg-[#d9f2ff] hover:border-[#00a9ff] cursor-pointer hidden">
+									<div>
+										<h1 class="text-[1em] font-[400] text-[#030303]">
+											Documents
+										</h1>
+										<p class="text-[.824em] font-[400] text-[#999] mt-[3px]">
+											For contracts and other printed documents only.
+										</p>
+									</div>
+								</div>
+
+								<!-- Gift -->
+								<div
+									id="contentOption2"
+									class="w-full flex items-center justify-between p-[10px] border-t-[1px] border-[#ccc] hover:bg-[#d9f2ff] hover:border-[#00a9ff] cursor-pointer hidden">
+									<div>
+										<h1 class="text-[1em] font-[400] text-[#030303]">Gift</h1>
+										<p class="text-[.824em] font-[400] text-[#999] mt-[3px]">
+											Only choose this option if it’s actually a gift… it will
+											not reduce the chance of your recipient having to pay
+											import duties!
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div
+							class="mt-[1.389em] flex md:flex-row flex-col md:justify-between justify-center gap-[11.75px]">
+							<div class="md:w-[91.7777777%] w-full">
+								<h1 class="text-[1em] font-[600] text-[#333] py-[7px]">
+									Customs Line Item #1
+									<span class="text-[.824em] text-[#00a9ff] cursor-pointer">
+										Add Line Item
+									</span>
+								</h1>
+								<div class="floating-label-wrapper relative w-full">
+									<input
+										type="text"
+										placeholder=""
+										class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
+									<label class="floating-label large">
+										Describe what you're shipping
+									</label>
+								</div>
+								<div class="mt-[1.389em] flex items-center gap-[24px]">
+									<div class="floating-label-wrapper relative w-full">
+										<input
+											type="text"
+											placeholder=""
+											class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
+										<label class="floating-label large"> Quantity </label>
+									</div>
+									<div class="floating-label-wrapper relative w-full">
+										<input
+											type="text"
+											placeholder=""
+											class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
+										<label class="floating-label large">
+											Total Value in $
+										</label>
+									</div>
+								</div>
+
+								<div
+									class="mt-[1.389em] flex items-center sm:gap-[24px] gap-[10px]">
+									<div class="floating-label-wrapper relative w-full">
+										<input
+											type="text"
+											placeholder=""
+											class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
+										<label class="floating-label large">
+											Total Weight lbs
+										</label>
+									</div>
+									<div
+										class="lg:w-[52px] w-fit flex justify-center items-center text-[22px] text-[#999]">
+										+
+									</div>
+									<div class="floating-label-wrapper relative w-full">
+										<input
+											type="text"
+											placeholder=""
+											class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
+										<label class="floating-label large">
+											Total Weight Oz
+										</label>
+									</div>
+								</div>
+
+								<div
+									class="mt-[1.389em] flex lg:flex-row flex-col items-center gap-[24px]">
+									<div class="w-full relative">
+										<div class="floating-label-wrapper relative w-full">
+											<input
+												type="text"
+												placeholder=""
+												class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
+											<label class="floating-label large">
+												Harmonization #
+											</label>
+										</div>
+										<p class="text-center text-[.824em] text-[#999] p-[.3em]">
+											Required for Certain Countries -
+											<span class="text-[.824em] text-[#00a9ff]">
+												Learn more
+											</span>
+										</p>
+										<button
+											class="h-[50px] p-[.7em] flex text-[1em] font-[600] text-[#fff] bg-[#00a9ff] border-[2px] border-[#0086ff] rounded-[0_5px_5px_0] absolute right-0 top-0 cursor-pointer">
+											Search #'s
+										</button>
+									</div>
+									<div class="w-full">
+										<select
+											class="appearance-none border-2 border-gray-300 focus:outline-none focus:border-[#00a9ff] px-4 py-[13px] rounded w-full bg-gradient-to-b from-[#fff] to-[#ebebeb] text-md">
+											<option>United States</option>
+											<option>Canada</option>
+											<option>United Kingdom</option>
+										</select>
+										<p class="text-center text-[.824em] text-[#999] p-[.3em]">
+											Item(s) Origin
+										</p>
+									</div>
+								</div>
+							</div>
+							<div
+								class="md:w-[8.33333333%] w-full h-[51px] md:mt-[2.28em] mt-0 flex justify-center items-center">
+								<i
+									class="fa-regular fa-trash-can text-[#999] text-[21px] cursor-pointer"></i>
+							</div>
+						</div>
+						<h1 class="text-[1em] font-[600] text-[#333] py-[7px] mt-[1.389em]">
+							International Tax IDs
+						</h1>
+						<div class="flex lg:flex-row flex-col items-center gap-[24px]">
+							<div class="w-full">
+								<div class="floating-label-wrapper relative w-full">
+									<input
+										type="text"
+										placeholder=""
+										class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
+
+									<label class="floating-label large"> Sender Tax ID </label>
+								</div>
+								<p class="text-center text-[.824em] text-[#999] p-[.3em]">
+									Optional: IOSS/HMRC/VOEC -
+									<span class="text-[.824em] text-[#00a9ff]"> Learn more </span>
+								</p>
+							</div>
+							<div class="w-full">
+								<div class="floating-label-wrapper relative w-full">
+									<input
+										type="text"
+										placeholder=""
+										class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
+
+									<label class="floating-label large"> Recipient Tax ID </label>
+								</div>
+								<p class="text-center text-[.824em] text-[#999] p-[.3em]">
+									Mexico/Brazil/EU (EORI) -
+									<span class="text-[.824em] text-[#00a9ff]"> Learn more </span>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Save Package -->
+				<div class="mt-[1em] mb-[1.389em]">
+					<label class="flex space-x-[5px] text-sm pt-[7px]">
+						<input
+							type="checkbox"
+							id="SavePackageCheckbox"
+							class="w-[15px] h-[15px] cursor-pointer mt-[2px]" />
+						<p class="gap-[3px]">
+							<span class="font-[600] text-[15px]">Save Package </span>
+							<span class="text-[.824em] text-[#999]">
+								Save your settings for repeated use
+							</span>
+						</p>
+					</label>
+
+					<div id="SavePackageInputWrapper" class="pt-3 hidden">
+						<div class="floating-label-wrapper relative w-full">
+							<input
+								type="text"
+								placeholder=""
+								class="peer floating-input border-2 border-gray-300 rounded w-full px-4 pt-5 pb-2 text-sm focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
+
+							<label class="floating-label large">
+								Enter a nickname for your Saved Package
+							</label>
+						</div>
+					</div>
+				</div>
+
+				<div class="w-full flex justify-end mt-[.694em] mb-[15rem]">
+					<a href="./Summary.html">
+						<button
+							class="lg:w-fit w-full lg:h-fit h-[83px] lg:text-[1.777em] text-[1.1em] lg:p-[25px_100px] p-[0px] text-white rounded-[10px] font-[700] bg-[#2ca200] border-[3px] border-[#008e00] transition-colors">
+							Get Rates
+						</button></a
+					>
+				</div>
+			</div>
+		</div>
+
+		<script src="./js/single.js"></script>
+		<script src="./js/index.js"></script>
+	</body>
 </html>
