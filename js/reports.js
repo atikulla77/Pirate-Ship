@@ -1,9 +1,11 @@
-function TotalPaymentsChart(id, length) {
+function TotalPaymentsChart (id, length)
+{
   const ctx = document.getElementById(id).getContext("2d");
 
-  const labels = Array.from({ length: length }, (_, i) => {
-    const date = new Date(2025, 5, i + 1); // June is month 5 (0-indexed)
-    return `${date.getMonth() + 1}/${date.getDate()}/25`;
+  const labels = Array.from({ length: length }, (_, i) =>
+  {
+    const date = new Date(2025, 5, i + 1); // June
+    return `${ date.getMonth() + 1 }/${ date.getDate() }/25`;
   });
 
   const data = {
@@ -11,7 +13,7 @@ function TotalPaymentsChart(id, length) {
     datasets: [
       {
         label: "Daily Cost",
-        data: Array(labels.length).fill(0), // all zero
+        data: Array(labels.length).fill(0),
         pointBackgroundColor: "#000000",
         pointRadius: 6,
         pointHoverRadius: 8,
@@ -28,74 +30,73 @@ function TotalPaymentsChart(id, length) {
       plugins: {
         legend: { display: false },
         tooltip: {
+          position: "nearest",
+          yAlign: "bottom", caretPadding: 10,
           callbacks: {
             label: (context) =>
-              `${context.label}: $${context.parsed.y.toFixed(2)}`,
+              `${ context.label }: $${ context.parsed.y.toFixed(2) }`,
           },
         },
       },
+      interaction: {
+        mode: "index",     // ✅ Entire X-axis point is interactive
+        intersect: false,  // ✅ Not just direct dot hover
+      },
       scales: {
-        y: {
-          display: false,
-        },
+        y: { display: false },
         x: {
           ticks: {
-            callback: function (val, index) {
+            callback: function (val)
+            {
               return this.getLabelForValue(val);
             },
             maxRotation: 45,
             minRotation: 45,
           },
-          grid: {
-            display: false,
-          },
+          grid: { display: false },
         },
       },
       elements: {
-        line: {
-          tension: 0,
-          borderWidth: 0,
-        },
-        point: {
-          borderWidth: 0,
-        },
+        line: { tension: 0, borderWidth: 0 },
+        point: { borderWidth: 0 },
       },
     },
   };
+  
 
   new Chart(ctx, config);
 }
+
 
 TotalPaymentsChart("dotChart", 30);
 TotalPaymentsChart("dotChart2", 12);
 TotalPaymentsChart("dotChart3", 12);
 
 // Service
-const ctx = document.getElementById("doughnutChart").getContext("2d");
+const ctx = document.getElementById("serviceChart").getContext("2d");
 
 new Chart(ctx, {
   type: "doughnut",
   data: {
-    labels: ["No Data"],
+    labels: [ "No Data" ],
     datasets: [
       {
-        data: [100],
-        backgroundColor: ["#FF709D"],
-        borderColor: ["#FFE3ED"],
-        borderWidth: 10,
-        hoverOffset: 10,
+        data: [ 100 ],
+        backgroundColor: [ "#FF709D" ],
+        borderWidth: 0,
       },
     ],
   },
   options: {
     responsive: true,
-    cutout: "70%",
+    cutout: "0%",
     plugins: {
       legend: { display: false },
       tooltip: {
         callbacks: {
-          label: function (context) {
-            return `${context.label}: ${context.parsed}%`;
+          label: function (context)
+          {
+            return `${ context.label }: ${ context.parsed }%`;
           },
         },
       },
@@ -110,7 +111,7 @@ const HeaderContainerData = [
     id: 1,
     name: "Data",
     uniqueClass: "w-[146px] border-r-[2px] rounded-tl-[5px]",
-    filterManuClass: ["left-0"],
+    filterManuClass: [ "left-0" ],
     FilterDataManu: `
     <p class="text-[14px] text-[#666]">Select date range</p>
     <div class="flex items-center h-[30px]">
@@ -136,7 +137,7 @@ const HeaderContainerData = [
     id: 2,
     name: "Type",
     uniqueClass: "w-[120px] border-r-[2px]",
-    filterManuClass: ["xl:left-[147px]", "left-0"],
+    filterManuClass: [ "xl:left-[147px]", "left-0" ],
     FilterDataManu: `
     <div class="flex items-center h-[30px] mb-[14px] relative">
         <div class="floating-label-wrapper relative w-full h-full z-[1]">
@@ -152,7 +153,7 @@ const HeaderContainerData = [
     id: 3,
     name: "Description",
     uniqueClass: "w-[300px] border-r-[2px]",
-    filterManuClass: ["xl:left-[266px]", "left-0"],
+    filterManuClass: [ "xl:left-[266px]", "left-0" ],
     FilterDataManu: `
     <div class="flex items-center h-[30px] relative">
         <div class="floating-label-wrapper relative w-full h-full">
@@ -169,7 +170,7 @@ const HeaderContainerData = [
     id: 4,
     name: "Total",
     uniqueClass: "w-[164px] border-r-[2px]",
-    filterManuClass: ["xl:left-[566px]", "left-0"],
+    filterManuClass: [ "xl:left-[566px]", "left-0" ],
     FilterDataManu: `
     <p class="text-[14px] text-[#666] mb-[-3px]">Select range</p>
     <div class="flex justify-between items-center h-[30px] relative">
@@ -216,10 +217,12 @@ const HeaderContainerData = [
   },
 ];
 
-function removeHeaderItemBGColor() {
+function removeHeaderItemBGColor ()
+{
   const FilterManuID = document.getElementById("filter_Manu");
-  HeaderContainerData.forEach((data) => {
-    const itemID = document.getElementById(`Header${data.name}Item`);
+  HeaderContainerData.forEach((data) =>
+  {
+    const itemID = document.getElementById(`Header${ data.name }Item`);
     itemID.classList.remove("bg-[#ccc]");
     itemID.classList.add("bg-gradient-to-b");
     const filterClassName = data.filterManuClass;
@@ -227,21 +230,23 @@ function removeHeaderItemBGColor() {
   });
 }
 
-HeaderContainerData.forEach((data) => {
+HeaderContainerData.forEach((data) =>
+{
   const FilterManuID = document.getElementById("filter_Manu");
   const itemDiv = document.createElement("div");
-  itemDiv.id = `Header${data.name}Item`;
-  itemDiv.className = `${data.uniqueClass} border-[#ccc] h-full flex items-center px-[14px] text-[#666] bg-gradient-to-b from-[#fff] from-[24%] to-[#ebebeb] cursor-pointer relative`;
+  itemDiv.id = `Header${ data.name }Item`;
+  itemDiv.className = `${ data.uniqueClass } border-[#ccc] h-full flex items-center px-[14px] text-[#666] bg-gradient-to-b from-[#fff] from-[24%] to-[#ebebeb] cursor-pointer relative`;
   itemDiv.innerHTML = `
-    <p class="text-[14px] font-[600]">${data.name}</p>
+    <p class="text-[14px] font-[600]">${ data.name }</p>
     <div class="absolute right-[14px] top-[0] h-[100%] flex items-center gap-[2px]">
       <i class="fa-solid fa-filter text-[13px] h-[14px] text-[#C8C8C8] leading-[17px]"></i>
       <i class="fa-solid fa-sort-down text-[14px] h-[14px] leading-[11px]"></i>
     </div>
   `;
-  itemDiv.addEventListener("click", () => {
+  itemDiv.addEventListener("click", () =>
+  {
     FilterManuID.classList.add("hidden");
-    HeaderContainerItemsClick(`Header${data.name}Item`, data.filterManuClass,data.FilterDataManu);
+    HeaderContainerItemsClick(`Header${ data.name }Item`, data.filterManuClass, data.FilterDataManu);
   });
   HeaderContainerID.appendChild(itemDiv);
 });
@@ -252,13 +257,16 @@ LCDiv.className =
 HeaderContainerID.appendChild(LCDiv);
 
 // Header Container Items Click
-function HeaderContainerItemsClick(id, filterClass, FilterDataHtml) {
+function HeaderContainerItemsClick (id, filterClass, FilterDataHtml)
+{
   const HeaderItemID = document.getElementById(id);
   const FilterManuID = document.getElementById("filter_Manu");
   const FilterDataManuID = document.getElementById("FilterDataManu");
-  if (HeaderItemID.classList.contains("bg-[#ccc]")) {
+  if (HeaderItemID.classList.contains("bg-[#ccc]"))
+  {
     removeHeaderItemBGColor();
-  } else {
+  } else
+  {
     FilterDataManuID.innerHTML = FilterDataHtml;
     removeHeaderItemBGColor();
     FilterManuID.classList.remove("hidden");
@@ -281,7 +289,8 @@ const columnsDataContanerDownArrowID = document.getElementById(
 );
 
 // OnClick To Filter Manu
-filterDataContanerID.addEventListener("click", () => {
+filterDataContanerID.addEventListener("click", () =>
+{
   // Filter Manu Hidden
   columnsDataContanerID.classList.remove("bg-[#fff]");
   columnsDataContanerID.classList.add("bg-[#ccc]");
@@ -294,7 +303,8 @@ filterDataContanerID.addEventListener("click", () => {
   filterDataManuID.classList.remove("hidden");
 });
 // OnClick To Column Manu
-columnsDataContanerID.addEventListener("click", () => {
+columnsDataContanerID.addEventListener("click", () =>
+{
   // Filter Manu Hidden
   filterDataContanerID.classList.remove("bg-[#fff]");
   filterDataContanerID.classList.add("bg-[#ccc]");
@@ -305,4 +315,96 @@ columnsDataContanerID.addEventListener("click", () => {
   columnsDataContanerID.classList.add("bg-[#fff]");
   columnsDataContanerDownArrowID.classList.add("hidden");
   columnsDataManuID.classList.remove("hidden");
+});
+
+
+
+// top state map 
+
+am5.ready(function ()
+{
+  let root = am5.Root.new("chartdiv");
+
+  root.setThemes([ am5themes_Animated.new(root) ]);
+
+  let chart = root.container.children.push(
+    am5map.MapChart.new(root, {
+      panX: "none",
+      panY: "none",
+      wheelX: "none",
+      wheelY: "none",
+      projection: am5map.geoAlbersUsa(),
+      layout: root.verticalLayout,
+    })
+  );
+
+  let polygonSeries = chart.series.push(
+    am5map.MapPolygonSeries.new(root, {
+      geoJSON: am5geodata_usaLow,
+    })
+  );
+
+  polygonSeries.mapPolygons.template.setAll({
+    tooltipText: "{id}",
+    interactive: false,
+    fill: am5.color("#f3f3f3"),
+    stroke: am5.color("#cccccc"),
+  });
+
+  polygonSeries.mapPolygons.template.states.create("hover", {
+    fill: am5.color("#FF709D"),
+  });
+
+  // Add 2-letter label in the center of each state
+  polygonSeries.mapPolygons.template.events.on("ready", function (ev)
+  {
+    let polygon = ev.target;
+    let label = chart.children.push(
+      am5.Label.new(root, {
+        text: polygon.dataItem.get("id"),
+        x: polygon.x() + polygon.width() / 2,
+        y: polygon.y() + polygon.height() / 2,
+        centerX: am5.p50,
+        centerY: am5.p50,
+        fontSize: 12,
+        fontWeight: "600",
+        populateText: true,
+      })
+    );
+  });
+});
+
+am5.ready(function ()
+{
+  var root = am5.Root.new("worldChart");
+
+  root.setThemes([ am5themes_Animated.new(root) ]);
+
+  var chart = root.container.children.push(
+    am5map.MapChart.new(root, {
+      panX: "rotateX",
+      panY: "rotateY",
+      projection: am5map.geoMercator(),
+    })
+  );
+
+  var polygonSeries = chart.series.push(
+    am5map.MapPolygonSeries.new(root, {
+      geoJSON: am5geodata_worldLow,
+      exclude: [ "AQ" ],
+    })
+  );
+
+  polygonSeries.mapPolygons.template.setAll({
+    tooltipText: "{name}",
+    interactive: true,
+    fill: am5.color("#f3f3f3"),
+    stroke: am5.color("#ccc"),
+  });
+
+  polygonSeries.mapPolygons.template.states.create("hover", {
+    fill: am5.color("#FF709D"),
+  });
+
+  chart.set("zoomControl", am5map.ZoomControl.new(root, {}));
 });

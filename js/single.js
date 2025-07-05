@@ -1,23 +1,4 @@
-/* ****SideBar**** */
-const toggleBtn = document.getElementById("toggleSidebar");
-const sidebar = document.getElementById("sidebar");
-const menuIcon = document.getElementById("menuIcon");
 
-let sidebarOpen = false;
-
-toggleBtn.addEventListener("click", () =>
-{
-  sidebarOpen = !sidebarOpen;
-  if (sidebarOpen)
-  {
-    sidebar.classList.remove("-translate-x-full");
-    menuIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />`; // X icon
-  } else
-  {
-    sidebar.classList.add("-translate-x-full");
-    menuIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />`; // Bars icon
-  }
-});
 
 //  Ship Paste Address
 const ShipPasteAddressBtn = document.getElementById("ShipPasteAddress");

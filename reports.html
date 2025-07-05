@@ -1,500 +1,682 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Reports</title>
+		<link rel="icon" href="./assets/icons/favicon.png" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+		<link rel="stylesheet" href="style.css" />
+		<script src="https://cdn.tailwindcss.com"></script>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+			integrity="sha512-sV+e2vOTFy83DbyTXGReOeVCYuChV8dp1TVtn1ZcAYHqeDsFzM+MqqMfQvbcPkmDoZ7KnNzZr+ZrEPxGL1Zg2g=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer" />
+		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reports</title>
-    <link rel="icon" href="./assets/icons/favicon.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-        integrity="sha512-sV+e2vOTFy83DbyTXGReOeVCYuChV8dp1TVtn1ZcAYHqeDsFzM+MqqMfQvbcPkmDoZ7KnNzZr+ZrEPxGL1Zg2g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-sA+e2t/Ll0Jx1Bx8rJwRtbVQY1Zp/PrNsp+ZoLQ0sps=" crossorigin="" />
-</head>
+		<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+		<script src="https://cdn.amcharts.com/lib/5/map.js"></script>
+		<script src="https://cdn.amcharts.com/lib/5/geodata/usaLow.js"></script>
+		<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+		<!-- Leaflet CSS -->
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+			integrity="sha256-sA+e2t/Ll0Jx1Bx8rJwRtbVQY1Zp/PrNsp+ZoLQ0sps="
+			crossorigin="" />
+	</head>
 
-<body>
+	<body>
+		<div class="md:flex bg-white">
+			<!-- SideBar -->
+			<div class="bg-gray-100" style="height: -webkit-fill-available">
+				<!-- Mobile Top Bar -->
+				<div
+					class="md:hidden flex items-center justify-between px-4 py-3 bg-black text-white shadow">
+					<img
+						src="./assets/icons//logo.svg"
+						alt="logo"
+						class="w-[50px] h-[50px]" />
+					<button id="toggleSidebar">
+						<!-- Bars Icon -->
+						<svg
+							id="menuIcon"
+							xmlns="http://www.w3.org/2000/svg"
+							class="w-7 h-7"
+							fill="none"
+							viewBox="0 0 24 24"
+							stroke="currentColor">
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M4 6h16M4 12h16M4 18h16" />
+						</svg>
+					</button>
+				</div>
 
-    <div class="md:flex bg-white">
-        <!-- SideBar -->
-        <div class=" bg-gray-100" style="height: -webkit-fill-available;">
-            <!-- Mobile Top Bar -->
-            <div class="md:hidden flex items-center justify-between px-4 py-3 bg-black text-white shadow">
-                <img src="/icons/logo.svg" alt="logo" class="w-[50px] h-[50px]" />
-                <button id="toggleSidebar">
-                    <!-- Bars Icon -->
-                    <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                </button>
-            </div>
+				<!-- Sidebar -->
+				<aside
+					id="sidebar"
+					class="bg-gray-100 text-black h-full flex flex-col justify-between md:sticky fixed top-[85px] left-0 z-50 w-full md:top-0 md:w-auto md:translate-x-0 transform -translate-x-full transition-transform duration-300 md:block">
+					<div class="">
+						<!-- Desktop Logo -->
+						<div class="hidden md:flex items-center justify-center">
+							<div
+								class="bg-black w-[215px] h-[215px] flex items-center justify-center">
+								<img
+									src="./assets/icons/logo.svg"
+									alt="logo"
+									class="w-[250px] h-[250px]" />
+							</div>
+						</div>
 
-            <!-- Sidebar -->
-            <aside id="sidebar"
-                class="bg-gray-100 text-black h-full flex flex-col justify-between md:sticky fixed top-[85px] left-0 z-50 w-full md:top-0 md:w-auto md:translate-x-0 transform -translate-x-full transition-transform duration-300 md:block">
-                <div class="">
-                    <!-- Desktop Logo -->
-                    <div class="hidden md:flex items-center justify-center">
-                        <div class="bg-black w-[215px] h-[215px] flex items-center justify-center">
-                            <img src="/assets/icons/logo.svg" alt="logo" class="w-[250px] h-[250px]" />
-                        </div>
-                    </div>
+						<!-- Menu Items -->
+						<nav class="relative">
+							<div class="relative" id="SideBarShipBtnContainer">
+								<!-- Main link -->
+								<a
+									href="./ship.html"
+									id="SideBarShipBtn"
+									class="group h-[75px] flex items-center gap-4 px-4 cursor-pointer transition bg-gray-100 hover:bg-white relative z-[50]">
+									<div class="w-[70px] h-[70px]">
+										<img
+											src="./assets/icons/menu-ship.png"
+											alt="ship"
+											class="w-full h-full object-contain" />
+									</div>
+									<div
+										id="SideBarShipBtnEffect"
+										class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
+									<span class="text-xl font-bold">Ship</span>
+								</a>
 
-                    <!-- Menu Items -->
-                    <nav class="relative">
-                        <div class="relative" id="SideBarShipBtnContainer">
-                            <!-- Main link -->
-                            <a href="./ship.html" id="SideBarShipBtn"
-                                class="group h-[75px] flex items-center gap-4 px-4 cursor-pointer transition bg-gray-100 hover:bg-white relative z-[50]">
-                                <div class="w-[70px] h-[70px]">
-                                    <img src="/assets/icons/menu-ship.png" alt="ship"
-                                        class="w-full h-full object-contain" />
-                                </div>
-                                <div id="SideBarShipBtnEffect"
-                                    class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
-                                <span class="text-xl font-bold">Ship</span>
-                            </a>
+								<!-- Ship All Items -->
+								<div
+									class="absolute top-0 right-0 z-[48] h-[75px]"
+									id="SideBarShipBtnItems">
+									<button
+										onclick="window.location.href='./single.html'"
+										id="SideBarShipSingleBtn"
+										class="w-[100px] h-full bg-[#f5f5f5] hover:bg-white flex flex-col justify-center items-center transition">
+										<img
+											src="./assets/images/singlePage.png"
+											alt="singlePage"
+											class="w-[45px] h-[45px] object-contain" />
+										<p class="text-[14px] font-[500]">Single</p>
+									</button>
+								</div>
+							</div>
 
-                            <!-- Ship All Items -->
-                            <div class="absolute top-0 right-0 z-[48] h-[75px]" id="SideBarShipBtnItems">
-                                <button onclick="window.location.href='./single.html'" id="SideBarShipSingleBtn"
-                                    class="w-[100px] h-full bg-[#f5f5f5] hover:bg-white flex flex-col justify-center items-center transition">
-                                    <img src="/assets/images/singlePage.png" alt="singlePage"
-                                        class="w-[45px] h-[45px] object-contain" />
-                                    <p class="text-[14px] font-[500]">Single</p>
-                                </button>
-                            </div>
-                        </div>
+							<a
+								href="./rates.html"
+								id="SideBarRatesBtn"
+								class="group h-[75px] flex items-center gap-4 px-4 cursor-pointer transition bg-gray-100 hover:bg-white relative z-[50]">
+								<div class="w-[70px] h-[70px]">
+									<img
+										src="./assets/icons/menu-rates.png"
+										alt="Rates"
+										class="w-full h-full object-contain" />
+								</div>
+								<div
+									id="SideBarRatesBtnEffect"
+									class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
+								<span class="text-xl font-bold">Rates</span>
+							</a>
+							<a
+								href="./reports.html"
+								id="SideBarReportsBtn"
+								class="group h-[75px] flex items-center gap-4 px-4 cursor-pointer transition bg-gray-100 hover:bg-white relative">
+								<div class="w-[70px] h-[70px]">
+									<img
+										src="./assets/icons/menu-reports.png"
+										alt="Reports"
+										class="w-full h-full object-contain" />
+								</div>
+								<div
+									id="SideBarReportsBtnEffect"
+									class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
+								<span class="text-xl font-bold">Reports</span>
+							</a>
+							<a
+								href="./settings.html"
+								id="SideBarSettingsBtn"
+								class="group h-[75px] flex items-center gap-4 px-4 cursor-pointer transition bg-gray-100 hover:bg-white relative">
+								<div class="w-[70px] h-[70px]">
+									<img
+										src="./assets/icons/menu-settings.png"
+										alt="Settings"
+										class="w-full h-full object-contain" />
+								</div>
+								<div
+									id="SideBarSettingsBtnEffect"
+									class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
+								<span class="text-xl font-bold">Settings</span>
+							</a>
+							<a
+								href="./support.html"
+								id="SideBarSupportBtn"
+								class="group h-[75px] flex items-center gap-4 px-4 cursor-pointer transition bg-gray-100 hover:bg-white relative">
+								<div class="w-[70px] h-[70px]">
+									<img
+										src="./assets/icons/menu-support.png"
+										alt="Support"
+										class="w-full h-full object-contain" />
+								</div>
+								<div
+									id="SideBarSupportBtnEffect"
+									class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
+								<span class="text-xl font-bold">Support</span>
+							</a>
+							<a
+								href="#"
+								id="SideBarLogoutBtn"
+								class="group h-[75px] flex items-center gap-4 px-4 cursor-pointer transition bg-gray-100 hover:bg-white relative">
+								<div class="w-[70px] h-[70px]">
+									<img
+										src="./assets/icons/menu-logout.png"
+										alt="Logout"
+										class="w-full h-full object-contain" />
+								</div>
+								<div
+									id="SideBarLogoutBtnEffect"
+									class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
+								<span class="text-xl font-bold">Logout</span>
+							</a>
+						</nav>
+					</div>
+					<!-- Footer -->
+					<div
+						class="text-[8px] text-gray-500 text-center space-y-1 px-2 mt-[1.38em] mb-4">
+						<p>© 2014–2025 – All Rights Reserved</p>
+						<p>
+							<a href="#" class="underline"
+								>Manage your Privacy & Data Settings</a
+							>
+						</p>
+					</div>
+				</aside>
+			</div>
+			<!-- Main Content -->
+			<div class="flex-1 sm:p-[49px] p-[30px] mb-[6em]">
+				<!-- Header -->
+				<div class="flex items-end mb-[50px]">
+					<h1 class="text-[30px] font-[700] text-[#000] leading-[1.1]">
+						Shipping Report
+					</h1>
+					<div class="flex items-center">
+						<p class="text-[21px] p-[0px_6px_0px_12px] text-[#333]">for</p>
+						<div class="pl-[10px] text-[#00a9ff] text-[20px] flex items-center">
+							<i class="fa-solid fa-calendar"></i>
 
-                        <a href="./rates.html" id="SideBarRatesBtn"
-                            class="group h-[75px] flex items-center gap-4 px-4 cursor-pointer transition bg-gray-100 hover:bg-white relative z-[50]">
-                            <div class="w-[70px] h-[70px]">
-                                <img src="/assets/icons/menu-rates.png" alt="Rates"
-                                    class="w-full h-full object-contain" />
-                            </div>
-                            <div id="SideBarRatesBtnEffect"
-                                class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
-                            <span class="text-xl font-bold">Rates</span>
-                        </a>
-                        <a href="./reports.html" id="SideBarReportsBtn"
-                            class="group h-[75px] flex items-center gap-4 px-4 cursor-pointer transition bg-gray-100 hover:bg-white relative">
-                            <div class="w-[70px] h-[70px]">
-                                <img src="/assets/icons/menu-reports.png" alt="Reports"
-                                    class="w-full h-full object-contain" />
-                            </div>
-                            <div id="SideBarReportsBtnEffect"
-                                class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
-                            <span class="text-xl font-bold">Reports</span>
-                        </a>
-                        <a href="./settings.html" id="SideBarSettingsBtn"
-                            class="group h-[75px] flex items-center gap-4 px-4 cursor-pointer transition bg-gray-100 hover:bg-white relative">
-                            <div class="w-[70px] h-[70px]">
-                                <img src="/assets/icons/menu-settings.png" alt="Settings"
-                                    class="w-full h-full object-contain" />
-                            </div>
-                            <div id="SideBarSettingsBtnEffect"
-                                class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
-                            <span class="text-xl font-bold">Settings</span>
-                        </a>
-                        <a href="./support.html" id="SideBarSupportBtn"
-                            class="group h-[75px] flex items-center gap-4 px-4 cursor-pointer transition bg-gray-100 hover:bg-white relative">
-                            <div class="w-[70px] h-[70px]">
-                                <img src="/assets/icons/menu-support.png" alt="Support"
-                                    class="w-full h-full object-contain" />
-                            </div>
-                            <div id="SideBarSupportBtnEffect"
-                                class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
-                            <span class="text-xl font-bold">Support</span>
-                        </a>
-                        <a href="#" id="SideBarLogoutBtn"
-                            class="group h-[75px] flex items-center gap-4 px-4 cursor-pointer transition bg-gray-100 hover:bg-white relative">
-                            <div class="w-[70px] h-[70px]">
-                                <img src="/assets/icons/menu-logout.png" alt="Logout"
-                                    class="w-full h-full object-contain" />
-                            </div>
-                            <div id="SideBarLogoutBtnEffect"
-                                class="absolute inset-0 transition-opacity hover:opacity-0 bg-gray-100/50"></div>
-                            <span class="text-xl font-bold">Logout</span>
-                        </a>
-                    </nav>
-                </div>
-                <!-- Footer -->
-                <div class="text-[8px] text-gray-500 text-center space-y-1 px-2 mt-[1.38em] mb-4">
-                    <p>© 2014–2025 – All Rights Reserved</p>
-                    <p>
-                        <a href="#" class="underline">Manage your Privacy & Data Settings</a>
-                    </p>
-                </div>
-            </aside>
-        </div>
-        <!-- Main Content -->
-        <div class="flex-1 sm:p-[49px] p-[30px] mb-[6em]">
-            <!-- Header -->
-            <div class="flex items-end mb-[50px]">
-                <h1 class="text-[30px] font-[700] text-[#000] leading-[1.1]">Shipping Report</h1>
-                <div class="flex items-center">
-                    <p class="text-[21px] p-[0px_6px_0px_12px] text-[#333]">for</p>
-                    <div class="pl-[10px] text-[#00a9ff] text-[20px] flex items-center">
-                        <i class="fa-solid fa-calendar"></i>
+							<div class="flex items-center cursor-pointer pl-[10px] pr-[5px]">
+								<p id="" class="pr-[5px]">today</p>
+								<div class="h-full flex justify-center items-center">
+									<i
+										class="fa-solid fa-caret-down text-[1em] text-[#00a9ff]"></i>
+								</div>
+							</div>
+							<i
+								class="fa-solid fa-circle-question text-[0.8em] text-[#999] hover:text-[#2a6496] cursor-pointer ml-[4px] mt-[1px]"></i>
+						</div>
+					</div>
+				</div>
 
-                        <div class="flex items-center cursor-pointer pl-[10px] pr-[5px]">
-                            <p id="" class="pr-[5px]">today</p>
-                            <div class="h-full flex justify-center items-center">
-                                <i class="fa-solid fa-caret-down text-[1em] text-[#00a9ff]"></i>
-                            </div>
-                        </div>
-                        <i
-                            class="fa-solid fa-circle-question text-[0.8em] text-[#999] hover:text-[#2a6496] cursor-pointer ml-[4px] mt-[1px]"></i>
-                    </div>
-                </div>
+				<div class="grid lg:grid-cols-3 grid-cols-1 gap-[24px] mb-[24px]">
+					<div
+						class="flex flex-col justify-between gap-[16px] h-[190px] text-center bg-[#fbfbfb]">
+						<h1 class="text-[1.235em] text-[#000] font-[500] mt-[24px]">
+							Pirate Ship saved you
+						</h1>
+						<h1 class="text-[21px] text-[#000]">0</h1>
+						<div class="p-[12px] border-t-[2px] border-[#ccc] bg-[#f5f5f5]">
+							<h1 class="text-[17px] text-[#000] font-[500]">
+								Total Savings vs Retail
+							</h1>
+						</div>
+					</div>
+					<div
+						class="flex flex-col justify-between gap-[16px] h-[190px] text-center bg-[#fbfbfb]">
+						<h1 class="text-[1.235em] text-[#000] font-[500] mt-[24px]">
+							Pending Returns
+						</h1>
+						<h1 class="text-[21px] text-[#000]">0 labels - $0.00</h1>
+						<div class="p-[12px] border-t-[2px] border-[#ccc] bg-[#f5f5f5]">
+							<h1
+								class="text-[17px] text-[#00a9ff] hover:text-[#2a6496] cursor-pointer font-[500]">
+								View Return Labels
+							</h1>
+						</div>
+					</div>
+					<div
+						class="flex flex-col justify-between gap-[16px] h-[190px] text-center bg-[#fbfbfb]">
+						<h1 class="text-[1.235em] text-[#000] font-[500] mt-[24px]">
+							Pending Label Refunds
+						</h1>
+						<h1 class="text-[21px] text-[#000]">0 labels - $0.00</h1>
+						<div class="p-[12px] border-t-[2px] border-[#ccc] bg-[#f5f5f5]">
+							<h1
+								class="text-[17px] text-[#00a9ff] hover:text-[#2a6496] cursor-pointer font-[500]">
+								View Refund History
+							</h1>
+						</div>
+					</div>
+					<div
+						class="flex flex-col justify-between gap-[16px] h-[190px] text-center bg-[#fbfbfb]">
+						<h1 class="text-[1.235em] text-[#000] font-[500] mt-[24px]">
+							Account Balance
+						</h1>
+						<h1 class="text-[21px] text-[#000]">$0.00</h1>
+						<div class="p-[12px] border-t-[2px] border-[#ccc] bg-[#f5f5f5]">
+							<h1
+								class="text-[17px] text-[#00a9ff] hover:text-[#2a6496] cursor-pointer font-[500]">
+								Manage Payment Sources
+							</h1>
+						</div>
+					</div>
+					<!-- Total Payments -->
+					<div
+						class="lg:order-none order-last lg:col-span-2 col-span-1 row-span-3 flex flex-col justify-between gap-[16px] h-[100%] text-center bg-[#fbfbfb]">
+						<div class="">
+							<h1 class="text-[1.235em] text-[#000] font-[500] mt-[24px]">
+								Total Payments
+							</h1>
+							<h1 class="text-[21px] text-[#000] mt-[16px]">$0.00</h1>
+						</div>
+						<div
+							class="max-w-2xl w-full lg:h-[420px] h-full p-4 flex justify-center mx-auto">
+							<canvas id="dotChart" class="lg:h-[420px] h-full"></canvas>
+						</div>
+						<div class="p-[12px] border-t-[2px] border-[#ccc] bg-[#f5f5f5]">
+							<h1
+								class="text-[17px] text-[#00a9ff] hover:text-[#2a6496] cursor-pointer font-[500]">
+								View Payment Receipts
+							</h1>
+						</div>
+					</div>
+					<div
+						class="flex flex-col justify-between gap-[16px] h-[190px] text-center bg-[#fbfbfb]">
+						<h1 class="text-[1.235em] text-[#000] font-[500] mt-[24px]">
+							Total Shipping Costs
+						</h1>
+						<h1 class="text-[21px] text-[#000]">$0.00</h1>
+						<div class="p-[12px] border-t-[2px] border-[#ccc] bg-[#f5f5f5]">
+							<h1
+								class="text-[17px] text-[#00a9ff] hover:text-[#2a6496] cursor-pointer font-[500]">
+								View Transactions
+							</h1>
+						</div>
+					</div>
+					<div
+						class="flex flex-col justify-between gap-[16px] h-[190px] text-center bg-[#fbfbfb]">
+						<h1 class="text-[1.235em] text-[#000] font-[500] mt-[24px]">
+							Carrier Adjustments
+						</h1>
+						<h1 class="text-[21px] text-[#000]">$0.00</h1>
+						<div class="p-[12px] border-t-[2px] border-[#ccc] bg-[#f5f5f5]">
+							<h1
+								class="text-[17px] text-[#00a9ff] hover:text-[#2a6496] cursor-pointer font-[500]">
+								View All Adjustments
+							</h1>
+						</div>
+					</div>
+				</div>
+				<div class="grid lg:grid-cols-3 grid-cols-1 gap-[24px] mb-[24px]">
+					<!-- Average Cost -->
+					<div
+						class="lg:col-span-2 col-span-1 row-span-2 flex flex-col justify-between gap-[16px] h-[100%] text-center bg-[#fbfbfb]">
+						<div class="">
+							<h1 class="text-[1.235em] text-[#000] font-[500] mt-[24px]">
+								Average Cost
+							</h1>
+							<h1 class="text-[21px] text-[#000] mt-[16px]">$0.00</h1>
+						</div>
+						<!-- Main Content -->
+						<div
+							class="max-w-2xl w-full mt-[-45px] p-4 flex justify-center mx-auto">
+							<canvas
+								id="dotChart2"
+								class="lg:!w-[460px] !w-full lg:!h-[220px] !h-full"></canvas>
+						</div>
+						<div
+							class="p-[12px] mt-[-16px] border-t-[2px] border-[#ccc] bg-[#f5f5f5]">
+							<h1
+								class="text-[17px] text-[#00a9ff] hover:text-[#2a6496] cursor-pointer font-[500]">
+								View All Shipments
+							</h1>
+						</div>
+					</div>
+					<div
+						class="flex flex-col justify-between gap-[16px] h-[190px] text-center bg-[#fbfbfb]">
+						<h1 class="text-[1.235em] text-[#000] font-[500] mt-[24px]">
+							Avg. Domestic
+						</h1>
+						<h1 class="text-[21px] text-[#000]">$0.00</h1>
+						<div class="p-[12px] border-t-[2px] border-[#ccc] bg-[#f5f5f5]">
+							<h1
+								class="text-[17px] text-[#00a9ff] hover:text-[#2a6496] cursor-pointer font-[500]">
+								View Shipments
+							</h1>
+						</div>
+					</div>
+					<div
+						class="flex flex-col justify-between gap-[16px] h-[190px] text-center bg-[#fbfbfb]">
+						<h1 class="text-[1.235em] text-[#000] font-[500] mt-[24px]">
+							Avg. International
+						</h1>
+						<h1 class="text-[21px] text-[#000]">$0.00</h1>
+						<div class="p-[12px] border-t-[2px] border-[#ccc] bg-[#f5f5f5]">
+							<h1
+								class="text-[17px] text-[#00a9ff] hover:text-[#2a6496] cursor-pointer font-[500]">
+								View Shipments
+							</h1>
+						</div>
+					</div>
+				</div>
+				<div class="grid lg:grid-cols-3 grid-cols-1 gap-[24px] mb-[24px]">
+					<div
+						class="flex flex-col justify-between gap-[16px] h-[190px] text-center bg-[#fbfbfb]">
+						<h1 class="text-[1.235em] text-[#000] font-[500] mt-[24px]">
+							New Shipments
+						</h1>
+						<h1 class="text-[21px] text-[#000]">0</h1>
+						<div class="p-[12px] border-t-[2px] border-[#ccc] bg-[#f5f5f5]">
+							<h1
+								class="text-[17px] text-[#00a9ff] hover:text-[#2a6496] cursor-pointer font-[500]">
+								View New Shipments
+							</h1>
+						</div>
+					</div>
+					<!-- Average Cost -->
+					<div
+						class="lg:order-none order-last lg:col-span-2 col-span-1 row-span-2 flex flex-col justify-between gap-[16px] h-[100%] text-center bg-[#fbfbfb]">
+						<div class="">
+							<h1 class="text-[1.235em] text-[#000] font-[500] mt-[24px]">
+								Total Shipments
+							</h1>
+							<h1 class="text-[21px] text-[#000] mt-[16px]">0</h1>
+						</div>
+						<!-- Main Content -->
+						<div
+							class="max-w-2xl w-full mt-[-45px] p-4 flex justify-center mx-auto">
+							<canvas
+								id="dotChart3"
+								class="lg:!w-[460px] !w-full lg:!h-[220px] !h-full"></canvas>
+						</div>
+						<div
+							class="p-[12px] mt-[-16px] border-t-[2px] border-[#ccc] bg-[#f5f5f5]">
+							<h1
+								class="text-[17px] text-[#00a9ff] hover:text-[#2a6496] cursor-pointer font-[500]">
+								View All Shipments
+							</h1>
+						</div>
+					</div>
+					<div
+						class="flex flex-col justify-between gap-[16px] h-[190px] text-center bg-[#fbfbfb]">
+						<h1 class="text-[1.235em] text-[#000] font-[500] mt-[24px]">
+							Delivery Issues
+						</h1>
+						<h1 class="text-[21px] text-[#000]">0</h1>
+						<div class="p-[12px] border-t-[2px] border-[#ccc] bg-[#f5f5f5]">
+							<h1
+								class="text-[17px] text-[#00a9ff] hover:text-[#2a6496] cursor-pointer font-[500]">
+								View Undeliverable Shipments
+							</h1>
+						</div>
+					</div>
+				</div>
+				<!-- Services -->
+				<div
+					class="grid lg:grid-cols-3 grid-cols-1 gap-[24px] lg:mb-0 mb-[24px]">
+					<div
+						class="h-[389px] flex flex-col justify-between gap-[16px] text-center bg-[#fbfbfb]">
+						<h1 class="text-[1.235em] text-[#000] font-[500] mt-[24px]">
+							Services
+						</h1>
+						<div class="w-full flex justify-center items-center h-[326px]">
+							<div class="w-[275px] h-[275px] mx-auto relative">
+								<canvas id="serviceChart" class=""></canvas>
+							</div>
+						</div>
+					</div>
+					<!-- Recipient Zones -->
+					<div
+						class="h-[389px] lg:col-span-2 col-span-1 row-span-2 flex flex-col justify-between gap-[16px] text-center bg-[#fbfbfb] p-[0px_16px_6px]">
+						<h1 class="text-[1.235em] text-[#000] font-[500] mt-[24px]">
+							Recipient Zones
+						</h1>
+						<div
+							class="w-full h-[320px] flex justify-center items-center"></div>
+					</div>
+				</div>
+				<!-- Top States -->
+				<div
+					class="grid lg:grid-cols-3 grid-cols-1 gap-[24px] lg:mb-0 mb-[24px]">
+					<!-- Left: Top States Box -->
+					<div
+						class="h-[389px] flex flex-col justify-between gap-[16px] text-center bg-[#fbfbfb]">
+						<h1 class="text-[1.235em] text-[#000] font-[500] mt-[24px]">
+							Top States
+						</h1>
+						<div class="w-full flex justify-center items-center">
+							<!-- You can show top states list here -->
+						</div>
+					</div>
 
-            </div>
+					<!-- Right: USA Map (2 columns wide) -->
+					<div
+						class="h-[389px] lg:col-span-2 col-span-1 flex flex-col justify-between gap-[16px] text-center p-[0px_16px_6px] bg-white rounded shadow">
+						<div id="chartdiv" class="w-full h-full"></div>
+					</div>
+				</div>
 
-            <div class="grid lg:grid-cols-3 grid-cols-1 gap-[24px] mb-[24px]">
+				<!-- Top International Countries -->
+				<div
+					class="grid lg:grid-cols-3 grid-cols-1 gap-[24px] lg:mb-0 mb-[24px]">
+					<!-- Left: Top Countries List -->
+					<div
+						class="h-[389px] flex flex-col justify-between gap-[16px] text-center bg-[#fbfbfb]">
+						<h1 class="text-[1.235em] text-[#000] font-[500] mt-[24px]">
+							Top International Countries
+						</h1>
+					</div>
 
-                <div class="flex flex-col justify-between gap-[16px] h-[190px] text-center bg-[#fbfbfb]">
-                    <h1 class="text-[1.235em] text-[#000] font-[500] mt-[24px]">Pirate Ship saved you</h1>
-                    <h1 class="text-[21px] text-[#000]">0</h1>
-                    <div class="p-[12px] border-t-[2px] border-[#ccc] bg-[#f5f5f5]">
-                        <h1 class="text-[17px] text-[#000] font-[500]">Total Savings vs Retail</h1>
-                    </div>
-                </div>
-                <div class="flex flex-col justify-between gap-[16px] h-[190px] text-center bg-[#fbfbfb]">
-                    <h1 class="text-[1.235em] text-[#000] font-[500] mt-[24px]">Pending Returns</h1>
-                    <h1 class="text-[21px] text-[#000]">0 labels - $0.00</h1>
-                    <div class="p-[12px] border-t-[2px] border-[#ccc] bg-[#f5f5f5]">
-                        <h1 class="text-[17px] text-[#00a9ff] hover:text-[#2a6496] cursor-pointer font-[500]">View
-                            Return Labels</h1>
-                    </div>
-                </div>
-                <div class="flex flex-col justify-between gap-[16px] h-[190px] text-center bg-[#fbfbfb]">
-                    <h1 class="text-[1.235em] text-[#000] font-[500] mt-[24px]">Pending Label Refunds</h1>
-                    <h1 class="text-[21px] text-[#000]">0 labels - $0.00</h1>
-                    <div class="p-[12px] border-t-[2px] border-[#ccc] bg-[#f5f5f5]">
-                        <h1 class="text-[17px] text-[#00a9ff] hover:text-[#2a6496] cursor-pointer font-[500]">View
-                            Refund History</h1>
-                    </div>
-                </div>
-                <div class="flex flex-col justify-between gap-[16px] h-[190px] text-center bg-[#fbfbfb]">
-                    <h1 class="text-[1.235em] text-[#000] font-[500] mt-[24px]">Account Balance</h1>
-                    <h1 class="text-[21px] text-[#000]">$0.00</h1>
-                    <div class="p-[12px] border-t-[2px] border-[#ccc] bg-[#f5f5f5]">
-                        <h1 class="text-[17px] text-[#00a9ff] hover:text-[#2a6496] cursor-pointer font-[500]">Manage
-                            Payment Sources</h1>
-                    </div>
-                </div>
-                <!-- Total Payments -->
-                <div
-                    class="lg:order-none order-last lg:col-span-2 col-span-1 row-span-3 flex flex-col justify-between gap-[16px] h-[100%] text-center bg-[#fbfbfb]">
-                    <div class="">
-                        <h1 class="text-[1.235em] text-[#000] font-[500] mt-[24px]">Total Payments</h1>
-                        <h1 class="text-[21px] text-[#000] mt-[16px]">$0.00</h1>
-                    </div>
-                    <div class="max-w-2xl w-full lg:h-[420px] h-full p-4 flex justify-center mx-auto">
-                        <canvas id="dotChart" class="lg:h-[420px] h-full"></canvas>
-                    </div>
-                    <div class="p-[12px] border-t-[2px] border-[#ccc] bg-[#f5f5f5]">
-                        <h1 class="text-[17px] text-[#00a9ff] hover:text-[#2a6496] cursor-pointer font-[500]">View
-                            Payment Receipts</h1>
-                    </div>
-                </div>
-                <div class="flex flex-col justify-between gap-[16px] h-[190px] text-center bg-[#fbfbfb]">
-                    <h1 class="text-[1.235em] text-[#000] font-[500] mt-[24px]">Total Shipping Costs</h1>
-                    <h1 class="text-[21px] text-[#000]">$0.00</h1>
-                    <div class="p-[12px] border-t-[2px] border-[#ccc] bg-[#f5f5f5]">
-                        <h1 class="text-[17px] text-[#00a9ff] hover:text-[#2a6496] cursor-pointer font-[500]">View
-                            Transactions</h1>
-                    </div>
-                </div>
-                <div class="flex flex-col justify-between gap-[16px] h-[190px] text-center bg-[#fbfbfb]">
-                    <h1 class="text-[1.235em] text-[#000] font-[500] mt-[24px]">Carrier Adjustments</h1>
-                    <h1 class="text-[21px] text-[#000]">$0.00</h1>
-                    <div class="p-[12px] border-t-[2px] border-[#ccc] bg-[#f5f5f5]">
-                        <h1 class="text-[17px] text-[#00a9ff] hover:text-[#2a6496] cursor-pointer font-[500]">View All
-                            Adjustments</h1>
-                    </div>
-                </div>
+					<!-- Right: World Map -->
+					<div
+						class="order-4 h-[389px] lg:col-span-2 col-span-1 row-span-2 flex flex-col justify-between gap-[16px] text-center bg-white p-[0px_16px_6px]">
+						<div id="worldChart" class="w-full h-full rounded shadow"></div>
+					</div>
+				</div>
 
-            </div>
-            <div class="grid lg:grid-cols-3 grid-cols-1 gap-[24px] mb-[24px]">
-                <!-- Average Cost -->
-                <div
-                    class="lg:col-span-2 col-span-1 row-span-2 flex flex-col justify-between gap-[16px] h-[100%] text-center bg-[#fbfbfb]">
-                    <div class="">
-                        <h1 class="text-[1.235em] text-[#000] font-[500] mt-[24px]">Average Cost</h1>
-                        <h1 class="text-[21px] text-[#000] mt-[16px]">$0.00</h1>
-                    </div>
-                    <!-- Main Content -->
-                    <div class="max-w-2xl w-full mt-[-45px] p-4 flex justify-center mx-auto">
-                        <canvas id="dotChart2" class="lg:!w-[460px] !w-full lg:!h-[220px] !h-full"></canvas>
-                    </div>
-                    <div class="p-[12px] mt-[-16px] border-t-[2px] border-[#ccc] bg-[#f5f5f5]">
-                        <h1 class="text-[17px] text-[#00a9ff] hover:text-[#2a6496] cursor-pointer font-[500]">View All
-                            Shipments</h1>
-                    </div>
-                </div>
-                <div class="flex flex-col justify-between gap-[16px] h-[190px] text-center bg-[#fbfbfb]">
-                    <h1 class="text-[1.235em] text-[#000] font-[500] mt-[24px]">Avg. Domestic</h1>
-                    <h1 class="text-[21px] text-[#000]">$0.00</h1>
-                    <div class="p-[12px] border-t-[2px] border-[#ccc] bg-[#f5f5f5]">
-                        <h1 class="text-[17px] text-[#00a9ff] hover:text-[#2a6496] cursor-pointer font-[500]">View
-                            Shipments</h1>
-                    </div>
-                </div>
-                <div class="flex flex-col justify-between gap-[16px] h-[190px] text-center bg-[#fbfbfb]">
-                    <h1 class="text-[1.235em] text-[#000] font-[500] mt-[24px]">Avg. International</h1>
-                    <h1 class="text-[21px] text-[#000]">$0.00</h1>
-                    <div class="p-[12px] border-t-[2px] border-[#ccc] bg-[#f5f5f5]">
-                        <h1 class="text-[17px] text-[#00a9ff] hover:text-[#2a6496] cursor-pointer font-[500]">View
-                            Shipments</h1>
-                    </div>
-                </div>
-            </div>
-            <div class="grid lg:grid-cols-3 grid-cols-1 gap-[24px] mb-[24px]">
-                <div class="flex flex-col justify-between gap-[16px] h-[190px] text-center bg-[#fbfbfb]">
-                    <h1 class="text-[1.235em] text-[#000] font-[500] mt-[24px]">New Shipments</h1>
-                    <h1 class="text-[21px] text-[#000]">0</h1>
-                    <div class="p-[12px] border-t-[2px] border-[#ccc] bg-[#f5f5f5]">
-                        <h1 class="text-[17px] text-[#00a9ff] hover:text-[#2a6496] cursor-pointer font-[500]">View New
-                            Shipments</h1>
-                    </div>
-                </div>
-                <!-- Average Cost -->
-                <div
-                    class="lg:order-none order-last lg:col-span-2 col-span-1 row-span-2 flex flex-col justify-between gap-[16px] h-[100%] text-center bg-[#fbfbfb]">
-                    <div class="">
-                        <h1 class="text-[1.235em] text-[#000] font-[500] mt-[24px]">Total Shipments</h1>
-                        <h1 class="text-[21px] text-[#000] mt-[16px]">0</h1>
-                    </div>
-                    <!-- Main Content -->
-                    <div class="max-w-2xl w-full mt-[-45px] p-4 flex justify-center mx-auto">
-                        <canvas id="dotChart3" class="lg:!w-[460px] !w-full lg:!h-[220px] !h-full"></canvas>
-                    </div>
-                    <div class="p-[12px] mt-[-16px] border-t-[2px] border-[#ccc] bg-[#f5f5f5]">
-                        <h1 class="text-[17px] text-[#00a9ff] hover:text-[#2a6496] cursor-pointer font-[500]">View All
-                            Shipments</h1>
-                    </div>
-                </div>
-                <div class="flex flex-col justify-between gap-[16px] h-[190px] text-center bg-[#fbfbfb]">
-                    <h1 class="text-[1.235em] text-[#000] font-[500] mt-[24px]">Delivery Issues</h1>
-                    <h1 class="text-[21px] text-[#000]">0</h1>
-                    <div class="p-[12px] border-t-[2px] border-[#ccc] bg-[#f5f5f5]">
-                        <h1 class="text-[17px] text-[#00a9ff] hover:text-[#2a6496] cursor-pointer font-[500]">View
-                            Undeliverable Shipments</h1>
-                    </div>
-                </div>
-            </div>
-            <!-- Services -->
-            <div class="grid lg:grid-cols-3 grid-cols-1 gap-[24px] lg:mb-0 mb-[24px]">
-                <div class="h-[389px] flex flex-col justify-between gap-[16px] text-center bg-[#fbfbfb]">
-                    <h1 class="text-[1.235em] text-[#000] font-[500] mt-[24px]">Services</h1>
-                    <div class="w-full flex justify-center items-center h-[326px]">
-                        <div class="w-[275px] h-[275px] mx-auto relative">
-                            <canvas id="doughnutChart" class=""></canvas>
-                        </div>
-                    </div>
-                </div>
-                <!-- Recipient Zones -->
-                <div
-                    class="h-[389px] lg:col-span-2 col-span-1 row-span-2 flex flex-col justify-between gap-[16px] text-center bg-[#fbfbfb] p-[0px_16px_6px]">
-                    <h1 class="text-[1.235em] text-[#000] font-[500] mt-[24px]">Recipient Zones</h1>
-                    <div class="w-full h-[320px] flex justify-center items-center">
+				<!-- Transaction History -->
+				<h1 class="text-[1.235em] text-[#000] font-[500] my-[24px]">
+					Transaction History
+				</h1>
+				<div class="flex flex-wrap items-center lg:gap-0 gap-[24px] mb-[24px]">
+					<div class="lg:w-[75%] w-full flex items-center lg:pr-[24px] pr-0">
+						<div class="floating-label-wrapper relative w-full">
+							<input
+								type="text"
+								placeholder=""
+								class="peer floating-input border-2 border-gray-300 rounded-l-[4px] w-full p-[12px] text-[17px] focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
+						</div>
+						<div
+							class="p-[0px_16px] bg-[#ebebeb] border-r-2 border-y-2 border-gray-300 flex justify-center items-center rounded-r-[4px] cursor-pointer"
+							style="height: -webkit-fill-available">
+							<i
+								class="fa-solid fa-magnifying-glass text-[22px] text-[#999]"></i>
+						</div>
+					</div>
+					<button
+						class="lg:w-[25%] w-full text-[17px] font-[400] text-[#fff] p-[2px_9px_0px] bg-[#00a9ff] hover:bg-[#0098E6] border-[2px] border-[#0098e6] h-[50px] rounded-[5px]">
+						Export
+					</button>
+				</div>
+				<div class="w-full relative">
+					<div
+						class="w-full border-[2px] border-b-0 border-[#ccc] rounded-t-[5px] overflow-x-auto">
+						<div
+							class="[@media(min-width:1205px)]:min-w-full min-w-[894px] h-[200px]">
+							<!-- Header -->
+							<div
+								id="HeaderContainer"
+								class="w-full h-[46px] flex items-center border-b-[2px] border-[#ccc] relative"></div>
+							<!-- Main Body -->
+							<div class="w-full h-[150px] relative">
+								<div
+									class="w-full absolute top-[35%] left-0 flex justify-center items-center">
+									<p class="text-[14px] text-[#333]">No Results</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- ********************** -->
+					<div
+						id="filter_Manu"
+						class="xl:w-[450px] w-full absolute top-[46px] bg-[#fbfbfb] text-[#666] border-[1px] border-[#ccc] rounded-b-[5px] z-[10] hidden">
+						<div
+							class="h-[31px] pl-[15px] flex items-center bg-[#ccc] hover:bg-white text-[#666] cursor-pointer">
+							<i class="fa-solid fa-arrow-up-a-z text-[14px] mr-[10px]"></i>
+							<p class="text-[14px]">Sort Ascending</p>
+						</div>
+						<div
+							class="h-[31px] pl-[15px] flex items-center bg-[#ccc] hover:bg-white text-[#666] cursor-pointer">
+							<i class="fa-solid fa-arrow-down-z-a text-[14px] mr-[10px]"></i>
+							<p class="text-[14px]">Sort Descending</p>
+						</div>
+						<!-- Filter Data -->
+						<div class="">
+							<div
+								id="FilterDataContaner"
+								class="h-[31px] pl-[15px] flex items-center bg-[#fff] hover:bg-white text-[#666] cursor-pointer relative">
+								<i class="fa-solid fa-filter text-[14px] mr-[10px]"></i>
+								<p class="text-[14px]">Filter Data</p>
 
-                    </div>
-                </div>
-            </div>
-            <!-- Top States -->
-            <div class="grid lg:grid-cols-3 grid-cols-1 gap-[24px] lg:mb-0 mb-[24px]">
-                <div class="h-[389px] flex flex-col justify-between gap-[16px] text-center bg-[#fbfbfb]">
-                    <h1 class="text-[1.235em] text-[#000] font-[500] mt-[24px]">Top States</h1>
-                    <div class="w-full flex justify-center items-center">
+								<div
+									class="absolute right-[15px] top-[0] h-[100%] flex items-center">
+									<i
+										id="FilterDataContanerDownArrow"
+										class="hidden fa-solid fa-sort-down text-[14px] h-[14px] leading-[11px]"></i>
+								</div>
+							</div>
+							<!-- Filter Data Manu -->
+							<div
+								id="FilterDataManu"
+								class="p-[3px_12px_12px] flex flex-col gap-[6px]"></div>
+						</div>
+						<!-- Columns -->
+						<div class="">
+							<div
+								id="ColumnsDataContaner"
+								class="h-[31px] pl-[15px] flex items-center bg-[#ccc] hover:bg-white text-[#666] cursor-pointer relative rounded-b-[5px]">
+								<i class="fa-solid fa-table-columns text-[14px] mr-[10px]"></i>
+								<p class="text-[14px]">Columns</p>
 
-                    </div>
-                </div>
-                <div
-                    class="h-[389px] lg:col-span-2 col-span-1 row-span-2 flex flex-col justify-between gap-[16px] text-center bg-[#a2d1d8] p-[0px_16px_6px]">
+								<div
+									class="absolute right-[15px] top-[0] h-[100%] flex items-center">
+									<i
+										id="ColumnsDataContanerDownArrow"
+										class="fa-solid fa-sort-down text-[14px] h-[14px] leading-[11px]"></i>
+								</div>
+							</div>
+							<!-- Columns Manu -->
+							<div
+								id="ColumnsDataManu"
+								class="m-[3px_12px_12px] p-[6px_12px] bg-white border-[1px] border-[#ccc] rounded-[5px] hidden">
+								<div class="flex items-center gap-[6px] p-[3px_0px]">
+									<input type="checkbox" class="w-[14px] text-white" />
+									<p class="text-[14px] text-[#333] font-[400]">Data</p>
+								</div>
+								<div class="flex items-center gap-[6px] p-[3px_0px]">
+									<input type="checkbox" class="w-[14px] text-white" />
+									<p class="text-[14px] text-[#333] font-[400]">Type</p>
+								</div>
+								<div class="flex items-center gap-[6px] p-[3px_0px]">
+									<input type="checkbox" class="w-[14px] text-white" />
+									<p class="text-[14px] text-[#333] font-[400]">Description</p>
+								</div>
+								<div class="flex items-center gap-[6px] p-[3px_0px]">
+									<input type="checkbox" class="w-[14px] text-white" />
+									<p class="text-[14px] text-[#333] font-[400]">Total</p>
+								</div>
+								<div class="flex items-center gap-[6px] p-[3px_0px]">
+									<input type="checkbox" class="w-[14px] text-white" />
+									<p class="text-[14px] text-[#333] font-[400]">Balance</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Footer -->
+				<div
+					class="flex justify-between bg-[#f5f5f5] border-[2px] border-[#ccc] p-[7px_10.5px] rounded-[0px_0px_5px_5px]">
+					<div class="flex items-center">
+						<div
+							class="w-[28px] h-[28px] bg-white hover:bg-[#EBEBEB] flex justify-center items-center border-[#ccc] border-[1px] rounded-[5px_0px_0px_5px]">
+							<i class="fa-solid fa-angles-left text-[#999] text-[13px]"></i>
+						</div>
+						<div
+							class="w-[28px] h-[28px] bg-white hover:bg-[#EBEBEB] flex justify-center items-center border-[#ccc] border-[1px] border-l-0">
+							<i class="fa-solid fa-angle-left text-[#999] text-[13px]"></i>
+						</div>
+						<div
+							class="w-[28px] h-[28px] bg-white hover:bg-[#EBEBEB] flex justify-center items-center border-[#ccc] border-[1px] border-l-0 border-r-0">
+							<i class="fa-solid fa-angle-right text-[#999] text-[13px]"></i>
+						</div>
+						<div
+							class="w-[28px] h-[28px] bg-white hover:bg-[#EBEBEB] flex justify-center items-center border-[#ccc] border-[1px] rounded-[0px_5px_5px_0px]">
+							<i class="fa-solid fa-angles-right text-[#999] text-[13px]"></i>
+						</div>
+					</div>
+					<div class="flex items-center sm:gap-[1.5em] gap-[0.8em]">
+						<div class="w-[98px] h-[28px] relative">
+							<select
+								class="w-full h-full appearance-none text-[#333] border-[1px] border-[#ccc] hover:border-[#999] focus:outline-none focus:border-[#00a9ff] rounded-[5px] px-[5px] bg-gradient-to-b from-[#fff] from-25% to-[#eee] text-[14px] relative">
+								<option>Show 10</option>
+								<option>Show 20</option>
+								<option>Show 50</option>
+								<option>Show 100</option>
+								<option>Show 200</option>
+								<option>Show 500</option>
+								<option>Show 1000</option>
+							</select>
+							<div class="absolute right-[5px] top-0 h-full flex items-center">
+								<i class="fa-solid fa-angle-down text-[12px] text-[#333]"></i>
+							</div>
+						</div>
+						<p class="text-[14px] text-[#999]">No items</p>
+					</div>
+				</div>
 
-                </div>
-            </div>
-            <!-- Top International Countries -->
-            <div class="grid lg:grid-cols-3 grid-cols-1 gap-[24px] lg:mb-0 mb-[24px]">
-                <div class="h-[389px] flex flex-col justify-between gap-[16px] text-center bg-[#fbfbfb]">
-                    <h1 class="text-[1.235em] text-[#000] font-[500] mt-[24px]">Top International Countries</h1>
-                    <div class="w-full flex justify-center items-center">
-                    </div>
-                </div>
-                <div
-                    class="order-4 h-[389px] lg:col-span-2 col-span-1 row-span-2 flex flex-col justify-between gap-[16px] text-center bg-[#a2d1d8] p-[0px_16px_6px]">
-                    <div id="map"></div>
-                </div>
-            </div>
-            <!-- Transaction History -->
-            <h1 class="text-[1.235em] text-[#000] font-[500] my-[24px]">Transaction History</h1>
-            <div class="flex flex-wrap items-center lg:gap-0 gap-[24px] mb-[24px]">
-                <div class="lg:w-[75%] w-full flex items-center lg:pr-[24px] pr-0">
-                    <div class="floating-label-wrapper relative w-full">
-                        <input type="text" placeholder=""
-                            class="peer floating-input border-2 border-gray-300 rounded-l-[4px] w-full p-[12px] text-[17px] focus:outline-none text-[#6b7280] focus:border-[#00a9ff]" />
-                    </div>
-                    <div class="p-[0px_16px] bg-[#ebebeb] border-r-2 border-y-2 border-gray-300 flex justify-center items-center rounded-r-[4px] cursor-pointer"
-                        style="height: -webkit-fill-available;">
-                        <i class="fa-solid fa-magnifying-glass text-[22px] text-[#999]"></i>
-                    </div>
+				<!-- ------- -->
+				<div
+					class="w-full text-[.7em] md:hidden flex flex-col justify-center text-center text-[#00a9ff] mt-[10em]">
+					<p class="text-[#000]">© 2014-2025 - All Rights Reserved</p>
+					<div class="w-full flex items-center justify-center">
+						<a href="#" class="">Privacy Policy</a
+						><span class="mx-[2px]"> - </span>
+						<a href="#" class="">Terms of Use</a
+						><span class="mx-[2px]"> - </span>
+						<a href="#" class="">DPA</a>
+					</div>
+					<div class="w-full flex items-center justify-center">
+						<a href="#" class="">Cookies Notice</a
+						><span class="mx-[2px]"> - </span>
+						<a href="#" class="">Manage Your Privacy & Data Settings</a>
+					</div>
+				</div>
+			</div>
+		</div>
 
-                </div>
-                <button
-                    class="lg:w-[25%] w-full text-[17px] font-[400] text-[#fff] p-[2px_9px_0px] bg-[#00a9ff] hover:bg-[#0098E6] border-[2px] border-[#0098e6] h-[50px] rounded-[5px]">
-                    Export
-                </button>
-            </div>
-            <div class="w-full relative">
-                <div class="w-full border-[2px] border-b-0 border-[#ccc] rounded-t-[5px] overflow-x-auto">
-                    <div class="[@media(min-width:1205px)]:min-w-full min-w-[894px] h-[200px]">
-                        <!-- Header -->
-                        <div id="HeaderContainer" class="w-full h-[46px] flex items-center border-b-[2px] border-[#ccc] relative">
-                        </div>
-                        <!-- Main Body -->
-                        <div class="w-full h-[150px] relative">
-                            <div class="w-full absolute top-[35%] left-0 flex justify-center items-center">
-                                <p class="text-[14px] text-[#333]">No Results</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- ********************** -->
-                <div id="filter_Manu" class="xl:w-[450px] w-full absolute top-[46px] bg-[#fbfbfb] text-[#666] border-[1px] border-[#ccc] rounded-b-[5px] z-[10] hidden ">
-                    <div
-                        class="h-[31px] pl-[15px] flex items-center bg-[#ccc] hover:bg-white text-[#666] cursor-pointer">
-                        <i class="fa-solid fa-arrow-up-a-z text-[14px] mr-[10px]"></i>
-                        <p class="text-[14px]">Sort Ascending</p>
-                    </div>
-                    <div
-                        class="h-[31px] pl-[15px] flex items-center bg-[#ccc] hover:bg-white text-[#666] cursor-pointer">
-                        <i class="fa-solid fa-arrow-down-z-a text-[14px] mr-[10px]"></i>
-                        <p class="text-[14px]">Sort Descending</p>
-                    </div>
-                    <!-- Filter Data -->
-                    <div class="">
-                        <div id="FilterDataContaner" class="h-[31px] pl-[15px] flex items-center bg-[#fff] hover:bg-white text-[#666] cursor-pointer relative">
-                            <i class="fa-solid fa-filter text-[14px] mr-[10px]"></i>
-                            <p class="text-[14px]">Filter Data</p>
-
-                            <div class="absolute right-[15px] top-[0] h-[100%] flex items-center">
-                                <i id="FilterDataContanerDownArrow" class="hidden fa-solid fa-sort-down  text-[14px] h-[14px] leading-[11px]"></i>
-                            </div>
-                        </div>
-                        <!-- Filter Data Manu -->
-                        <div id="FilterDataManu" class="p-[3px_12px_12px] flex flex-col gap-[6px]">
-                            
-                        </div>
-                    </div>
-                    <!-- Columns -->
-                    <div class="">
-                        <div id="ColumnsDataContaner" class="h-[31px] pl-[15px] flex items-center bg-[#ccc] hover:bg-white text-[#666] cursor-pointer relative rounded-b-[5px]">
-                            <i class="fa-solid fa-table-columns text-[14px] mr-[10px]"></i>
-                            <p class="text-[14px]">Columns</p>
-
-                            <div class="absolute right-[15px] top-[0] h-[100%] flex items-center">
-                                <i id="ColumnsDataContanerDownArrow" class="fa-solid fa-sort-down text-[14px] h-[14px] leading-[11px]"></i>
-                            </div>
-                        </div>
-                        <!-- Columns Manu -->
-                        <div id="ColumnsDataManu" class="m-[3px_12px_12px] p-[6px_12px] bg-white border-[1px] border-[#ccc] rounded-[5px] hidden">
-                            <div class="flex items-center gap-[6px] p-[3px_0px]">
-                                <input type="checkbox" class="w-[14px] text-white">
-                                <p class="text-[14px] text-[#333] font-[400]">Data</p>
-                            </div>
-                            <div class="flex items-center gap-[6px] p-[3px_0px]">
-                                <input type="checkbox" class="w-[14px] text-white">
-                                <p class="text-[14px] text-[#333] font-[400]">Type</p>
-                            </div>
-                            <div class="flex items-center gap-[6px] p-[3px_0px]">
-                                <input type="checkbox" class="w-[14px] text-white">
-                                <p class="text-[14px] text-[#333] font-[400]">Description</p>
-                            </div>
-                            <div class="flex items-center gap-[6px] p-[3px_0px]">
-                                <input type="checkbox" class="w-[14px] text-white">
-                                <p class="text-[14px] text-[#333] font-[400]">Total</p>
-                            </div>
-                            <div class="flex items-center gap-[6px] p-[3px_0px]">
-                                <input type="checkbox" class="w-[14px] text-white">
-                                <p class="text-[14px] text-[#333] font-[400]">Balance</p>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <!-- Footer -->
-            <div
-                class="flex justify-between bg-[#f5f5f5] border-[2px] border-[#ccc] p-[7px_10.5px] rounded-[0px_0px_5px_5px]">
-                <div class="flex items-center">
-                    <div
-                        class="w-[28px] h-[28px] bg-white hover:bg-[#EBEBEB] flex justify-center items-center border-[#ccc] border-[1px] rounded-[5px_0px_0px_5px]">
-                        <i class="fa-solid fa-angles-left text-[#999] text-[13px]"></i>
-                    </div>
-                    <div
-                        class="w-[28px] h-[28px] bg-white hover:bg-[#EBEBEB] flex justify-center items-center border-[#ccc] border-[1px] border-l-0">
-                        <i class="fa-solid fa-angle-left text-[#999] text-[13px]"></i>
-                    </div>
-                    <div
-                        class="w-[28px] h-[28px] bg-white hover:bg-[#EBEBEB] flex justify-center items-center border-[#ccc] border-[1px] border-l-0 border-r-0">
-                        <i class="fa-solid fa-angle-right text-[#999] text-[13px]"></i>
-                    </div>
-                    <div
-                        class="w-[28px] h-[28px] bg-white hover:bg-[#EBEBEB] flex justify-center items-center border-[#ccc] border-[1px] rounded-[0px_5px_5px_0px]">
-                        <i class="fa-solid fa-angles-right text-[#999] text-[13px]"></i>
-                    </div>
-                </div>
-                <div class="flex items-center sm:gap-[1.5em] gap-[0.8em]">
-                    <div class="w-[98px] h-[28px] relative">
-                        <select
-                            class="w-full h-full appearance-none text-[#333] border-[1px] border-[#ccc] hover:border-[#999] focus:outline-none focus:border-[#00a9ff] rounded-[5px] px-[5px] bg-gradient-to-b from-[#fff] from-25% to-[#eee] text-[14px] relative">
-                            <option>Show 10</option>
-                            <option>Show 20</option>
-                            <option>Show 50</option>
-                            <option>Show 100</option>
-                            <option>Show 200</option>
-                            <option>Show 500</option>
-                            <option>Show 1000</option>
-                        </select>
-                        <div class="absolute right-[5px] top-0 h-full flex items-center">
-                            <i class="fa-solid fa-angle-down text-[12px] text-[#333]"></i>
-                        </div>
-                    </div>
-                    <p class="text-[14px] text-[#999]">No items</p>
-                </div>
-            </div>
-
-            <!-- ------- -->
-            <div class="w-full text-[.7em] md:hidden flex flex-col justify-center text-center text-[#00a9ff] mt-[10em]">
-                <p class="text-[#000]">© 2014-2025 - All Rights Reserved</p>
-                <div class="w-full flex items-center justify-center">
-                    <a href="#" class="">Privacy Policy</a><span class="mx-[2px]"> - </span>
-                    <a href="#" class="">Terms of Use</a><span class="mx-[2px]"> - </span>
-                    <a href="#" class="">DPA</a>
-                </div>
-                <div class="w-full flex items-center justify-center">
-                    <a href="#" class="">Cookies Notice</a><span class="mx-[2px]"> - </span>
-                    <a href="#" class="">Manage Your Privacy & Data Settings</a>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-
-    <script src="./js/reports.js"></script>
-    <script src="./js/index.js"></script>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-o9N1j7kT+F9FcwWZfV8oKYXR7J5NwBNxgpj1lvTlZBo=" crossorigin=""></script>
-</body>
-
+		<script src="./js/reports.js"></script>
+		<script src="./js/index.js"></script>
+		<script
+			src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+			integrity="sha256-o9N1j7kT+F9FcwWZfV8oKYXR7J5NwBNxgpj1lvTlZBo="
+			crossorigin=""></script>
+	</body>
 </html>
